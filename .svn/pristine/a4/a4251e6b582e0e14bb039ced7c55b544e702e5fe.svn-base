@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          *{
+            margin: 0px;
+            padding: 0px;
+            text-decoration: none;
+            list-style: none;
+          }
+      </style>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+  var menus;
+  apiready = function(){
+     var header = $api.byId('header');
+     var footer = $api.byId('footer');
+     var footerH = $api.offset(footer).h;
+     var headerH = $api.offset(header).h;
+     $api.fixStatusBar(headerH);
+     menus = $api.domAll(header, '.head_tab');
+     var frames = [];
+     api.openFrameGroup ({
+         name: 'mainframegroup',
+         scrollEnabled: true,
+         rect: {
+              x: 0,
+              y: headerH,
+              w: 'auto',
+              h: api.winHeight-headerH-footerH
+         },
+         index: 0,
+         frames: [{
+             name: 'main_schoolLead_frame',
+             url: '../frame/main_schoolLead_frame.html'
+         },{
+             name: 'my_bill_frame',
+             url: '../frame/my_bill_frame.html'
+         }]
+     }, function(ret, err){
+         changetabcolor(ret.index);
+     });
+  }
+
+  function changetabcolor(index_){
+     for(var i=0;i<menus.length;i++){
+         if (index_==i) {$api.addCls(menus[i], 'active');
+         }else{
+             $api.removeCls(menus[i], 'active');
+         }
+     }
+  }
+  </script>
+  </html>

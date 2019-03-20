@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>Shiyuan</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          *{
+            padding: 0rem;
+            margin: 0rem;
+            list-style: none;
+            text-decoration: none;
+          }
+
+          html{
+            font-size: 20px;
+          }
+
+        .header{
+            width: 100%;
+            height: 0px;
+        }
+
+
+          #foot {
+            width: 100%;
+            height:49px;
+            position: fixed;
+            bottom: 0px;
+            border-top: #f2f2f2 solid 1px;
+            color: #ccc;
+        }
+        .bottom1 {
+            float: left;
+            width: 25%;
+            height: 46px;
+            margin-top: 2px;
+            /*background-color: #234;*/
+        }
+        .bottom2 {
+            float: left;
+            width: 25%;
+            height: 46px;
+            margin-top: 2px;
+            /*background-color: #234;*/
+        }
+        .bottom3 {
+            float: left;
+            width: 25%;
+            height: 46px;
+            margin-top: 2px;
+            /*background-color: #234;*/
+        }
+        .bottom4 {
+            float: left;
+            width: 25%;
+            height: 46px;
+            margin-top: 2px;
+            color: #ff6633;
+        }
+        .shise {
+            width: 25px;
+            height: 48px;
+            margin:0px auto;
+            font-size: 12px;
+        }
+        .shiyun {
+            width: 25px;
+            height: 48px;
+            margin:0px auto;
+            font-size: 12px;
+        }
+        .shiling {
+            width: 25px;
+            height: 48px;
+            margin:0px auto;
+            font-size: 12px;
+        }
+        .shiyuan {
+            width: 25px;
+            height: 48px;
+            margin:0px auto;
+            font-size: 12px;
+        }
+        .shise .pic img {
+            width: 25px;
+            height: 25px;
+
+        }
+        .shiyun .pic img {
+            width: 25px;
+            height: 25px;
+
+        }
+        .shiling .pic img {
+            width: 25px;
+            height: 25px;
+
+        }
+        .shiyuan .pic img {
+            width: 25px;
+            height: 25px;
+
+        }
+      </style>
+  </head>
+  <body>
+    <div class="wrap">
+        <div class="header" id="header"></div>
+      <div id="foot">
+        <div class="bottom1" onclick="openFoodWin(0)">
+            <div class="shise" >
+                <div class="pic"><img src="../icon/unfood.png"></div>
+                <div class="fonts">食色</div>
+            </div>
+        </div>
+        <div class="bottom2" onclick="openFoodWin(1)">
+            <div class="shiyun">
+                <div class="pic"><img src="../icon/uncooker.png"></div>
+                <div class="fonts">食韵</div>
+            </div>
+        </div>
+        <div class="bottom3" onclick="openFoodWin(2)">
+            <div class="shiling">
+                <div class="pic"><img src="../icon/unold.png"></div>
+                <div class="fonts">食灵</div>
+            </div>
+        </div>
+        <div class="bottom4">
+            <div class="shiyuan">
+                <div class="pic"><img src="../icon/bool.png"></div>
+                <div class="fonts">食源</div>
+            </div>
+        </div>
+    </div>
+    </div>
+  </body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+         var header = $api.byId('header');
+        var headerH = $api.offset(header).h;
+        var footer = $api.byId('foot');
+        var footerH = $api.offset(footer).h;
+        $api.fixStatusBar(headerH);
+        var main_height = api.winHeight-95;
+        api.openFrame({
+            name: 'Shiyuan_frame',
+            url: '../frame/Shiyuan_frame.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: api.winHeight-headerH-footerH-1
+            },
+            animation:{
+                type:'none',
+                duration:300
+            },
+            pageParam: {
+                name: 'value'
+            },
+            bounces: false
+        });
+    };
+
+    function openFoodWin(index){
+      if(index==0){
+        api.openWin({
+            name: 'Shise',
+            url: 'Shise.html',
+            animation:{
+              type:"none"
+            },
+            pageParam: {
+                name: 'test'
+            }
+        });
+      }else if(index==1){
+        api.openWin({
+            name: 'Shiyun',
+            url: 'Shiyun.html',
+            animation:{
+              type:"none"
+            },
+            pageParam: {
+                name: 'test'
+            }
+        });
+      }else if(index==2){
+        api.openWin({
+            name: 'shiLing',
+            url: 'shiLing.html',
+            animation:{
+              type:"none"
+            },
+            pageParam: {
+                name: 'test'
+            }
+        });
+      }else if(index==3){
+        api.openWin({
+            name: 'Shiyuan',
+            url: 'Shiyuan.html',
+            animation:{
+              type:"none"
+            },
+            pageParam: {
+                name: 'test'
+            }
+        });
+      }
+    }
+
+  </script>
+  </html>

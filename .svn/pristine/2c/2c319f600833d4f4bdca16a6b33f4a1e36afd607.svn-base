@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+            font-family: "微软雅黑"; 
+        }
+
+        .fengGeXian {
+          width: 100%;
+          height: 1px;
+          background-color: #efefef;
+        }
+
+        .DafengGeXian {
+          width: 100%;
+          height: 3px;
+          background-color: #efefef;
+        }
+
+        * {
+          margin: 0px;
+          padding: 0px;
+        }
+
+        .top {
+          width: 100%;
+          height: 121px;
+          background-color: #ff6633;
+          position: relative;
+        }
+
+        .drow img {
+          width: 80px;
+          height: 80px;
+          border-radius: 80px;
+          position: absolute;
+          bottom:15px; 
+          left:15px;
+        }
+
+        .name {
+          position: absolute;
+          bottom:65px; 
+          left:100px;
+          color: #FFF;
+          font-size: 18px;
+        }
+
+        .zan {
+          position: absolute;
+          bottom:15px; 
+          left:100px;
+          color: #FFF;
+          font-size: 14px;
+        }
+
+        .fensi {
+          position: absolute;
+          bottom:15px; 
+          left:70%;
+          color: #FFF;
+          font-size: 14px;
+        }
+        
+        .content {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        font-family: 微软雅黑;
+        }
+
+        .message_box {
+            width: 100%;
+            height: 55px;
+            position: relative;
+        }
+    
+        .cut_line {
+            width: 100%;
+            height: 10px;
+            background: #e2e2e2;
+        }
+        
+        .message_box p {
+            width: 24px;
+            padding-left: 15px;
+            font-size: 12px;
+            height: 55px;
+            line-height: 55px;
+            color: #333;
+        }
+
+       .message_box input {
+            width: 80%;
+            height: 35px;
+            color: #333;
+            line-height: 35px;
+            font-size: 12px;
+            position: absolute;
+            left: 55px;
+            top: 10px;
+            border: none;
+            border-bottom: 1px solid #e2e2e2;
+       } 
+
+
+        
+    </style>
+</head>
+<body>
+  <div class="contnt">
+        <div class="top">
+            <div class="drow"><img src="../image/touxiang.jpg"></div>
+            <div class="name">大嘴吃天下</div>
+            <div class="zan">获赞：6666</div>
+            <div class="fensi">粉丝：8888</div>
+        </div>
+        <div class="message_box">
+             <p>签名</p>
+             <input type="text" name="sine" value="" placeholder="啥都没写怎么不懒死你">
+        </div>
+        <div class="cut_line"></div>
+        <div class="message_box">
+             <p>姓名</p>
+             <input type="text" name="sine" value="李二狗" placeholder="啥都没写怎么不懒死你">
+        </div>
+        <div class="message_box">
+             <p>城市</p>
+             <input type="text" name="sine" value="雾都" placeholder="啥都没写怎么不懒死你">
+        </div>
+        <div class="message_box">
+             <p>星座</p>
+             <input type="text" name="sine" value="摩羯" placeholder="啥都没写怎么不懒死你">
+        </div>
+        <div class="cut_line"></div>
+        <div class="message_box">
+             <p>爱好</p>
+             <input type="text" name="sine" value="烹饪，音乐" placeholder="啥都没写怎么不懒死你">
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        
+    };
+</script>
+</html>

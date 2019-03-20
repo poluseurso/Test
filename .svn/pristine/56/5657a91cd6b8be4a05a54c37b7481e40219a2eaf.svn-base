@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>shiYuanMain</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+    .content {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        font-family: 微软雅黑;
+    }
+    
+    .me {
+        width: 100%;
+        height: 80px;
+        position: relative;
+        border-bottom: 1px solid #e2e2e2;
+    }
+
+    .img_border {
+        width: 48px;
+        height: 48px;
+        border-radius:50%;
+        border: 1px solid #ccc;
+        margin: 0 auto; 
+        margin-top: 10px;
+    }
+    .img_border img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    }
+
+    .me p {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+        text-align: center;
+        color: #ccc;
+    }
+
+    .cotent textarea {
+        width: 90%;
+        height: 225px;
+        padding-left: 15px;
+        font-size: 12px;
+        line-height: 22px;
+        padding-top: 10px;
+        margin: 0 auto;
+        display: block;
+        color: #333;
+    }
+
+    .cut_line_s {
+        width: 100%;
+        height: 1px;
+        background: #e2e2e2;
+    }
+
+    .cut_line_l {
+        margin-top: 10px;
+        width: 100%;
+        height: 10px;
+        background: #e2e2e2;
+    }
+
+    .evaluate_box {
+        width: 100%;
+        height: 100%;
+    }
+
+    .evaluate_word {
+        width: 55px;
+        height: 32px;
+        line-height: 33px;
+        padding-left: 15px;
+        color: #ccc;
+        font-size: 12px;
+
+    }
+
+    .evaluate_img_box {
+        width: 200px;
+        height: 24px;
+        margin-left: 70px;
+
+    }
+    
+    .evaluate_img_box img {
+        width: 24px;
+        height: 24px;
+        padding-right: 10px;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="cotent">
+        <div class="me">
+            <div class="img_border">
+                <img src="../image/meat2.jpg">
+            </div>
+            <p>家常小菜汇集</p>
+        </div>
+        <textarea  name="" id="" placeholder ="让味蕾在之间绽放，为您购买的菜单评价吧："></textarea>
+        <div class="cut_line_s"></div>
+        <div class="cut_line_l"></div>
+        <div class="evaluate_box">
+            <p class="evaluate_word">描述相符:</p>
+            <div class="evaluate_img_box">
+                <img src="../icon/unstart.png" alt="">
+                <img src="../icon/unstart.png" alt="">
+                <img src="../icon/unstart.png" alt="">
+                <img src="../icon/unstart.png" alt="">
+                <img src="../icon/unstart.png" alt="">
+            </div>
+            <p class="evaluate_word">值得入手:</p>
+            <div class="evaluate_img_box">
+                <img src="../icon/unstart.png" alt="">
+                <img src="../icon/unstart.png" alt="">
+                <img src="../icon/unstart.png" alt="">
+                <img src="../icon/unstart.png" alt="">
+                <img src="../icon/unstart.png" alt="">
+            </div>
+            <p class="evaluate_word">内容清晰:</p>
+            <div class="evaluate_img_box">
+                <img src="../icon/unstart.png" alt="">
+                <img src="../icon/unstart.png" alt="">
+                <img src="../icon/unstart.png" alt="">
+                <img src="../icon/unstart.png" alt="">
+                <img src="../icon/unstart.png" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        };
+</script>
+</html>

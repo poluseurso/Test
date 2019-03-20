@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+           font-family: "微软雅黑"; 
+           /*background: #ccc；*/
+           width: 100%;
+           height: 35%;
+        }
+        * {
+            padding:0px;
+            margin: 0px;
+        }
+        .tianchong {
+            width: 100%;
+            height: 5000px;
+            /*background: #879;*/
+           
+        }
+        .content { 
+            position: fixed;
+            bottom: 0px;
+        	width: 100%;
+            height: 65%;
+        	border-radius:10px;
+        	background: #fff;
+            padding-top: 38px;
+            
+        }
+        .sum {
+        	width: 100%;
+        	height: 30px;
+        	position: absolute;
+        	top: 0px;
+        	line-height: 30px;
+        	text-align: center;
+       		background: #fff;
+        	border-radius:10px;
+            border-top: 1px solid #f2f2f2;
+        }
+        .closeIcon {
+            position: absolute;
+            right: 18px;
+            top: 10px;
+            width: 15px;
+            height: 15px;
+        }
+        .rongqi {
+            overflow-y:auto;
+            width: 100%;
+            height: 100%;
+ 
+        }
+        .headphoto {
+        	margin-left: 15px;
+        	width: 50px;
+        	height: 70px;
+        	float: left;
+        	/*display: inline;*/
+        }
+        .photo {
+        	width: 45px;
+        	height: 45px;
+        	border-radius: 45px;
+            border: 1px solid #ccc;
+        }
+        .wenzi {
+        	width: 100%;
+        	/*float: left;
+        	display: inline;*/
+        } 
+        .name {
+        	color: #ccc;
+        	font-size: 14px;
+        	padding-bottom: 3px;
+        }
+        .yuyan {
+        	color: #000;
+        	font-size: 16px;
+        	padding-bottom: 3px;
+        }
+        .time {
+        	color: #ccc;
+        	font-size: 12px;
+        	padding-bottom: 10px;
+        }
+        .fengexian {
+        	width: 90%;
+        	height: 1px;
+        	background-color: #f2f2f2;
+        	margin: 0px auto;
+        	margin-bottom: 10px;
+        }
+        .mengceng {
+            z-index: 1000;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 1000000px;
+            height: 100000px;
+            display: none;
+            background :#000;
+            opacity:0.5;
+        }
+        .youqingtishi {
+            margin:0px auto;
+            color: #ccc;
+            padding-top: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body id="zhengti">
+    <div class="mengceng" id="mengceng" onclick="closeMenceng()"></div>
+    <div class="tianchong" onclick="closepage()"></div>
+    <div class="content">
+    	<div class="sum">评论</div>
+        <div class="close"><img class="closeIcon" src="../image/closePage.png" onclick="closepage()"></div>
+        <div class="rongqi" id="rongqi">
+<!--          	<div class="neirong1">
+        		<div class="headphoto"><img class="photo" src="../image/3-1(7).jpg"></div>
+        		<div class="wenzi">
+        			<div class="name">刘比如</div>
+        			<div class="yuyan">哥们就厉害了，这就深深的把猫迷住了。</div>
+        			<div class="time">2018年05月25日</div>
+        		</div>
+        	</div>
+        	<div class="fengexian"></div> -->
+        </div>
+    </div>
+</body>
+<script id="articleTemp" type="text/x-dot-template">
+    {{~it:value:index}}
+        <div class="neirong1 ceshi"  id="{{=value.id}}" >
+                <div class="headphoto"><img class="photo" src="{{=value.authorId.headimage}}"></div>
+                <div class="wenzi">
+                    <div class="name"commentid="{{=value.id}}" authorId="{{=value.authorId.id}}" articleId="{{=value.articleId}}">{{=value.authorId.nickName}}</div>
+                    <div class="yuyan" commentid="{{=value.id}}" authorId="{{=value.authorId.id}}" articleId="{{=value.articleId}}">{{=value.content}}</div>
+                    <div class="time"commentid="{{=value.id}}" authorId="{{=value.authorId.id}}" articleId="{{=value.articleId}}">{{=value.createdAt.substr(0, 10)}}</div>
+                </div>
+            </div>
+        <div class="fengexian"></div>
+    {{~}}
+</script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/APP_INFO.js"></script>
+<script type="text/javascript">
+    var page_id;
+    apiready = function(){
+        // alert("id"+api.pageParam.id);
+        // alert("name"+api.pageParam.name);
+        if(api.pageParam.id==undefined){ 
+            page_id=api.pageParam.name;
+        }else{
+           page_id=api.pageParam.id; 
+        }
+       
+        // alert(page_id);
+        querypinglun(page_id);
+        api.addEventListener({
+                name: 'myEvent'
+            }, function(ret, err) {
+                // alert(JSON.stringify(ret.value));
+                 var mychar = document.getElementById("mengceng");
+                 mychar.style.display="none"; 
+        });      
+    };
+
+    function querypinglun(page_id){
+        var pageId=page_id;
+        // alert(pageId);
+        var client = new Resource("A6077910409729", "4ED601CF-94BA-9C80-2CB8-F4361A840A58");
+        var Model = client.Factory("comment");
+            Model.query({
+                filter:{
+                    "fields":{"id": true, "articleId": true, "authorId": true,"content":true,"createdAt":true},
+                    //或者["id","make","model"]
+                   "include":"authorIdPointer",
+                   "where":{"articleId": pageId }
+                }
+            }, function(ret,err){
+            if(err){
+            //处理错误 err   alert(JSON.stringify( err ));            
+            }else{
+            //处理数据 ret  
+                // alert(JSON.stringify( ret ));
+                var interation = doT.template( $('#articleTemp').html() );
+                // alert(interation( ret ));
+                $( '#rongqi' ).append(interation( ret ));
+                var mychar = document.getElementById("mengceng");
+                mychar.style.display="none";
+                if (ret=='') {
+                    var x='<div class="youqingtishi">没有评论，快来占领沙发吧</div>';
+                    $( '#rongqi' ).html(x);
+                }   
+                addLongTouchEvent();
+
+            }
+        })
+    }1
+    function closepage(){
+        api.closeFrame({
+            name: 'shiLing_fream_piglunqu'
+         });
+    }
+
+    var jveding=1;
+    function deleteEvent(userid,pageid,commentid){
+        // alert($api.getStorage('user_info').id);
+        // alert(userid);
+        // alert($api.getStorage('user_info').id);
+        // alert(userid);
+        if ($api.getStorage('user_info').id==userid) { 
+            // alert(1);       
+            var mychar = document.getElementById("mengceng");
+            mychar.style.display="block"; 
+            openDeleteFrame(pageid,commentid);        
+        }else{
+            jveding=2;
+            huifu(jveding);
+        }
+
+    }
+
+    function openDeleteFrame(pageid,commentid){
+    
+        api.openFrame({
+            name: 'deletePingLun',
+            url: '../frame/deletePingLun.html',
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            },
+            pageParam: {
+                name: pageid,
+                id:commentid
+            }
+        });
+
+    }
+    // var timeOutEvent;
+    var chumoid;
+    function addLongTouchEvent(){
+        $(".ceshi").on({
+            touchstart: function(e){
+                // var a=e;
+                timeOutEvent = setTimeout(function(){
+                  //此处为长按事件-----在此显示遮罩层及删除按钮
+                  var id_comment=e.touches[0].target.getAttribute("commentid");
+                  var id_author=e.touches[0].target.getAttribute("authorId");
+                  chumoid=id_author;
+                  var id_article=e.touches[0].target.getAttribute("articleId");
+                  deleteEvent(id_author,id_article,id_comment);
+                  // alert("长按事件！");
+                },800);
+                // alert(timeOutEvent);
+            },
+            touchmove: function(e){
+                clearTimeout(timeOutEvent);
+                timeOutEvent = 0;
+                // e.preventDefault();
+            },
+            touchend: function(e){
+                 clearTimeout(timeOutEvent);
+                if(timeOutEvent!=0){//点击
+                  //此处为点击事件----在此处添加跳转详情页
+                  // alert("点击事件");
+                   huifu(jveding);
+                }
+                //决定代码等于1是才能让quit函数执行，等于2是为了防止函数错误情况下也执行
+                jveding=1;              
+                return false;
+            }
+        });
+    }
+    function closeMenceng(){
+        api.closeFrame({
+            name: 'deletePingLun'
+         });
+        var mychar = document.getElementById("mengceng");
+        mychar.style.display="none"; 
+    }
+function huifu(jveding){
+    if(jveding==1){
+        var mychar = document.getElementById("mengceng");
+        mychar.style.display="block"; 
+        openDeleteFrame('','');
+        // alert("aaa");
+    }
+        
+}
+</script>
+</html>

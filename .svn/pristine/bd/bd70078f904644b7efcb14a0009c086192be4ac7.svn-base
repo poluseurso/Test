@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+           font-family: "微软雅黑"; 
+           background-color: #FFF; 
+        }
+        * {
+            padding:0px;
+            margin: 0px;
+        }
+        .clearfix:after {content:"";display:block;height:0px;clear:both;}
+        .clearfix {zoom:1;}
+        .top {
+        	height: 45PX;
+        	width: 100%;
+        	position: relative;
+            background: #ff6633;
+        }
+        .font_return {
+        	position: absolute;
+        	top:0px;
+        	left:15px; 
+        	font-size: 32px;
+        	/*color: #FF6633; */
+            width: 20px;
+            height: 20px;
+        }
+        .return_img {
+            width: 20px;
+            height: 20px;
+        }
+        .title {
+        	width: 100%;
+        	height: 45px;
+			float: left;
+			margin:0px auto;
+			text-align:center;
+			line-height:45px;
+			font-size: 16px;
+            color: #fff;
+        }
+        .guanZhu {
+        	position: absolute;
+        	width: 80px;
+        	height: 32px;
+        	margin-top: 4px;
+        	margin-bottom: 10px;
+        	top:2px;
+        	right:15px; 
+        	border-radius: 10px;
+        	background-color: #FF6633;
+        	text-align:center;
+			line-height:32px;
+            color: #fff;
+
+        }
+        .fengGeXian {
+        	width: 100%;
+        	height: 1px;
+        	background-color: #efefef;
+        }
+
+        .bottom {
+        	width: 100%;
+        	height: 47px;
+        	position: absolute;
+        	bottom: 0px;
+        	background-color: #fff;
+        	/*z-index: 100000000000;*/
+        }
+        .function {
+        	position: absolute;
+        	width: 97%; 
+            /*width:100%  会导致手机中出现左右方向出现进度条*/
+        	top: 9px;
+        	left: 9px;
+        	height: 29px;
+            background: #fff;
+        	
+        }
+        .write {
+        	width: 25%;
+        	height: 30px;
+            float: left;
+        }       
+        .pingLun {
+            width: 25%;
+            height: 30px;
+            float: left;
+        }
+        .dianZan {
+            float: left;
+            width: 25%;
+            height: 30px;
+        }
+        .FenXiang {
+            float: left;
+            width: 25%;
+            height: 30px;
+        }
+        .juZhong {
+            margin:0px auto;
+            width: 30px;
+            height: 30px;
+        }
+        .write img {
+            width: 30px;
+            height: 30px;
+        }
+        .pingLun img {
+        	width: 30px;
+        	height: 30px;
+        }        
+        .dianZan img {
+        	width: 30px;
+        	height: 30px;
+        }        
+        .FenXiang img {
+            margin-top: 5px;
+        	width: 20px;
+        	height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top" id="header">
+    	<div class="font_return" onclick="return_back()"><img class="return_img" src="../icon/back_fff.png"></div>
+    	<div class="title">文章</div>
+    	<div class="guanZhu" id="guanZhu" onclick="clickGuanZhu()"><!-- 关注 --></div>
+    </div>
+    <div class="fengGeXian"></div>
+    
+    <div class="bottom">
+    	<div class="fengGeXian"></div>
+    	<div class="function">
+    		<div class="write"  onclick="openPingLunPage()"><div class="juZhong"><img src="../icon/writePinlun.png"></div></div>
+    		<div class="pingLun"><div class="juZhong"><img src="../image/3-1(4).png" onclick="viewPingLun()"></div></div>
+    		<div class="dianZan"><div class="juZhong"><img id="heart" src="../image/blankHeart.png" onclick="dianzan()"></div></div>
+            <!-- 点赞后#f82747 -->
+    		<div class="FenXiang"><div class="juZhong"><img src="../image/3-1(3).png"></div></div>
+    	</div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/APP_INFO.js"></script>
+<script type="text/javascript">
+    var page_id;
+    apiready = function(){
+
+        page_id=api.pageParam.id;
+        var header = $api.byId('header');
+        var headerH = $api.offset(header).h;
+        $api.fixStatusBar(headerH);
+        var main_height = api.winHeight-95;
+        api.openFrame({
+            name: 'xiangQing-frame',
+            url: '../frame/xiangQing-frame.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: main_height
+            },
+            animation:{
+                type:'none',
+                duration:300               
+            },
+            pageParam: {
+                id: page_id
+            },
+            bounces: false
+        });
+    };
+    var guanzhuquxiao=0;
+    function clickGuanZhu()
+    {
+        if (guanzhuquxiao==0) {
+            var x=document.getElementById('guanZhu');
+            $( '#guanZhu' ).html("已关注");
+            guanzhuquxiao=1;
+        }else{
+            var x=document.getElementById('guanZhu');
+            $( '#guanZhu' ).html("关注");
+            guanzhuquxiao=0;
+        }
+        
+    }
+    function return_back()
+    {   
+        api.closeWin();
+        
+        api.openWin({
+        name: 'shiLing',
+        url: './shiLing.html',
+        pageParam: {
+            id: 'text'
+             }
+        });
+    }
+    //点赞函数
+    //点赞的全局变量 监控是点赞还是未点赞
+    
+   //判断是取消赞还是点赞
+    var heartnum=0;
+    var dianzanshu=0;
+    function dianzan() 
+    {  //先获取有多少赞   定义var dianzanshu;
+        
+        queryArticle(page_id);
+        if (heartnum==0)
+          {
+            //点赞
+           document.getElementById("heart").src="../image/redHeart.png";
+           heartnum=1;
+           shujukucaozuo(page_id , 1);
+          }
+        else
+          {
+            //取消赞
+          document.getElementById("heart").src="../image/blankHeart.png";
+          heartnum=0; 
+          shujukucaozuo(page_id , -1);
+          }
+    }
+    function queryArticle(id){
+            var client = new Resource("A6077910409729", "4ED601CF-94BA-9C80-2CB8-F4361A840A58");
+            var Model = client.Factory("article");
+                Model.get({"_id":id}
+                    , function(ret,err){
+                if(err){
+                    //处理错误 err
+                    // alert(JSON.stringify(err));
+                }else{
+                    //处理数据 ret
+                    // alert(JSON.stringify(ret));  
+                    dianzanshu= ret.dianZanNum;
+                }
+            })
+                   
+    }
+    //两个参数 page是文章id   i是判断文章赞数增加还是减少的 i=1或-1
+    function shujukucaozuo(page,i){
+        var wenzhangId=page;
+        // alert(wenzhangId);
+        var client = new Resource("A6077910409729", "4ED601CF-94BA-9C80-2CB8-F4361A840A58");
+        var Model = client.Factory("article");
+        var load=dianzanshu+i;
+        // alert(i+"   "+dianzanshu +"   "  +load)
+        Model.save({"_id":wenzhangId},{"dianZanNum":load}, function(ret,err){
+            if(err){
+                //处理错误 err
+                   // alert("查询失败"+JSON.stringify(err)); 
+            }else{
+                //处理数据 ret
+                // alert("查询成功"+JSON.stringify(ret)); 
+            }
+        })
+    }
+    //打开自己评论的fream（自己输入评论）
+    function openPingLunPage(){
+        var header = $api.byId('header');
+        var headerH = $api.offset(header).h;
+        $api.fixStatusBar(headerH);
+        var main_height = api.winHeight+55;
+        api.openFrame({
+            name: 'xiangqing-pinglun-frame',
+            url: '../frame/xiangqing-pinglun-frame.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: main_height
+            },
+            animation:{
+                type:'none',
+                duration:300               
+            },
+            pageParam: {
+                id: page_id
+            },
+            bounces: false
+        });
+    }
+    // 打开用于查看别人评论的fream（查看别人的评论）
+    function viewPingLun() {
+       var header = $api.byId('header');
+        var headerH = $api.offset(header).h;
+        $api.fixStatusBar(headerH);
+        var main_height = api.winHeight-45;
+        api.openFrame({
+            name: 'shiLing_fream_piglunqu',
+            url: '../frame/shiLing_fream_piglunqu.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: main_height
+            },
+            animation:{
+                type:'none',
+                duration:300               
+            },
+            pageParam: {
+                id: page_id
+            },
+            bounces: false
+        });
+    }
+</script>
+</html>

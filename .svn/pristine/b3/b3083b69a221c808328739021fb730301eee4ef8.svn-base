@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>Shiyuan_message</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          *{
+            padding: 0rem;
+            margin: 0rem;
+            list-style: none;
+            text-decoration: none;
+          }
+
+          html{
+            font-size: 20px;
+          }
+          
+          .header {
+            width: 100%;
+            height: 48px;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+          }
+          
+          .header img {
+            width: 22px;
+            height: 22px;
+            position: absolute;
+            left: 15px;
+            top: 13px;
+          }
+
+          .header p {
+            width: 100%;
+            height: 48px;
+            line-height: 48px;
+            color: #333;
+            font-family: 微软雅黑;
+            font-size: 16px;  
+            text-align: center;
+          }
+
+          .header .change {
+            width: 48px;
+            height: 49px;
+            position: absolute;
+            right: 15px;
+            color: #ccc;
+            font-size: 12px;
+            top: 0px;
+          }
+      </style>
+  </head>
+  <body>
+    <div class="wrap">
+        <div class="header" id="header">
+          <img src="../icon/back_orange.png" id="back" onclick="to_shiyuan()">
+          <p>我的信息</p>
+          <p class="change">确认修改</p>
+        </div>
+        <div class="content">
+        </div>
+    </div>
+  </body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+         var header = $api.byId('header');
+        var headerH = $api.offset(header).h;
+        $api.fixStatusBar(headerH);
+        var main_height = api.winHeight;
+        api.openFrame({
+            name: 'Shiyuan_message_frame',
+            url: '../frame/Shiyuan_message_frame.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: main_height
+            },
+            animation:{
+                type:'none',
+                duration:300               
+            },
+            pageParam: {
+                name: 'value'
+            },
+            bounces: false
+        });
+    };
+    var to_shiyuan = function(){
+      api.closeWin({
+      });
+      api.openWin({
+          name: 'Shiyuan',
+          url: '../html/Shiyuan.html',
+          pageParam: {
+              name: 'test'
+          }
+      });    }
+  </script>
+  </html>

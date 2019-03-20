@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>shiYuanMain</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+    .content {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        font-family: 微软雅黑;
+    }
+    
+    .me {
+        width: 100%;
+        height: 80px;
+        position: relative;
+    }
+
+    .img_border {
+        width: 48px;
+        height: 48px;
+        border-radius:50%;
+        border: 1px solid #ccc;
+        margin: 0 auto; 
+        margin-top: 10px;
+    }
+    .img_border img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+    }
+
+    .me p {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+        text-align: center;
+        color: #ccc;
+    }
+
+    .cut_line {
+        width: 100%;
+        height: 10px;
+        background: #e2e2e2;
+    }
+    .care_box {
+        width: 100%;
+        height: 45px;
+        background: #fff;
+        position: relative;
+        border-bottom: 1px solid #e2e2e2;
+    }
+    
+    .img_border_down {
+        width: 28px;
+        height: 28px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        margin-left: 15px;
+        margin-top: 15px;
+       
+    }
+
+    .care_box img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
+
+    .name {
+        width: 100px;
+        height: 34px;
+        color: #333;
+        font-size: 14px;
+        line-height: 34px;
+        position: absolute;
+        top: -8px;
+        left: 60px;
+    }
+    .sine {
+        width: 200px;
+        height: 34px;
+        color: #ccc;
+        font-size: 12px;
+        line-height: 34px;
+        position: absolute;
+        top: 13px;
+        left: 60px;
+    }
+
+    .zhuangtai {
+        width: 28px;
+        height: 22px;
+        line-height: 22px;
+        position: absolute;
+        right: 60px;
+        top: 0px;
+        color: #333;
+        font-size: 12px;
+    }
+
+    .isshopping {
+        width: 36px;
+        height: 22px;
+        line-height: 22px;
+        position: absolute;
+        right: 15px;
+        top: 22px;
+        font-size: 12px;
+        color: #ff6633;
+    }
+    </style>
+</head>
+<body>
+    <div class="cotent">
+        <div class="me">
+            <div class="img_border">
+                <img src="../image/touxiang.jpg" id="avatar">
+            </div>
+            <p id="nick_name">大嘴吃天下</p>
+        </div>
+        <div class="cut_line"></div>
+        <div id="care_box"></div>
+    </div>
+</body>
+<script id="articleTemp" type="text/x-dot-template">
+        {{~it:value:index}}
+           <div class="care_box" onclick="to_pingjia({{=value._id}})">
+            <div class="img_border_down">
+                <img src="{{=value.caipuId.FengMian.url}}">
+            </div>
+            <p class="name">{{=value.caipuId.PingJia}}</p>
+            <p class="sine" id="authorName">@{{=value.caipuId.userIDPointer.nickName}}</p>
+            <p class="zhuangtai">状态:</p>
+            <p class="isshopping">已购买</p>
+        </div> 
+        {{~}}
+    </script>
+<script type="text/javascript" src="api.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/APP_INFO.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        var user_info = $api.getStorage("user_info");
+        var avatar = $("#avatar");
+        var nick_name = $("#nick_name");
+        // alert(JSON.stringify(user_info));
+        avatar.attr("src",user_info.headimage);
+        nick_name.text(user_info.nickName);
+        var client = new Resource(APP_INFO.app_id, APP_INFO.app_key);
+        var Model = client.Factory("shopping");
+         Model.query({
+            filter:{
+                "include":{"caipuIdPointer":"userIDPointer"},
+                "where":{
+                    "shopperId":user_info.id
+                }
+            }
+        }, function(ret,err){
+            if(err){
+                //处理错误 err
+                alert(JSON.stringify(err));
+            }else{
+                // alert(JSON.stringify(ret));
+                 var interation = doT.template( $('#articleTemp').html() );
+                //将数据显示到网页中
+                $( '#care_box' ).html(interation( ret ));
+            }
+        })
+        };
+
+    var to_pingjia = function(id){
+        api.openWin({
+            name: 'Shiyuan_evaluate',
+            url: '../html/Shiyuan_evaluate.html',
+            animation:{
+                type:"fade",                //动画类型（详见动画类型常量）
+                subType:"from_right",       //动画子类型（详见动画子类型常量）
+                duration:300                //动画过渡时间，默认300毫秒
+            },
+            pageParam: {
+                name: id
+            }
+        });
+        api.closeWin({
+        });
+    }
+</script>
+</html>

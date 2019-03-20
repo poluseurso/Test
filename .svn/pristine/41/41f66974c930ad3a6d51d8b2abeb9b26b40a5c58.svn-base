@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+    	* {
+            padding:0px;
+            margin: 0px;
+        }
+        body{
+              
+			/*background: #555;*/
+			position: relative;
+        }
+        .juzhong {
+        	width: 280px;
+        	height: 100px;
+        	/*margin:0px auto;*/
+        	position: absolute;
+        	left: 50%;
+        	top: 50%;
+        	margin-left: -140px;
+        	margin-top: 280px;
+        	background: #fff;
+        	/*border: 0px solid #777;*/
+        	border-radius: 5px;
+
+        }
+        .shanchu {
+        	width: 280px;
+        	height: 50px;
+        	line-height: 50px;
+        	text-indent: 10px;
+        	text-align: left;
+
+        }
+        .jubao {
+        	width: 280px;
+        	height: 50px;
+        	line-height: 50px;
+        	text-indent: 10px;
+        	text-align: left;
+        }
+    </style>
+</head>
+<body>
+	<div class="juzhong">
+		<div class="shanchu" onclick="deletedata(pageid,commentID)">删除</div>
+		<div class="jubao" >举报</div>
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/APP_INFO.js"></script>
+<script type="text/javascript">
+	var pageid;
+    var commentID;
+    apiready = function(){
+    	pageid=api.pageParam.name;
+        commentID=api.pageParam.id;
+        // alert(commentID);
+    };
+    function deletedata(pageid,commentID){
+    	var client = new Resource("A6077910409729", "4ED601CF-94BA-9C80-2CB8-F4361A840A58");
+		var Model = client.Factory("comment");
+		Model.delete({"_id":commentID},function(ret,err){
+		    if(err){
+		        //处理错误 err
+		        alert(JSON.stringify( err ));
+		    }else{
+		        //处理数据 ret
+		        alert(JSON.stringify( ret ));
+		    }
+		})
+        api.closeFrame({
+            name: 'shiLing_fream_piglunqu'
+            });
+        api.openFrame({
+            name: 'shiLing_fream_piglunqu',
+            url: '../frame/shiLing_fream_piglunqu.html',
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            },
+            pageParam: {
+                name: pageid
+            }
+        });
+
+		api.closeFrame({
+            name: 'deletePingLun'
+            });
+		// api.closeFrame({
+		//     name: 'shiLing_mengceng'
+		// });
+    }
+</script>
+</html>

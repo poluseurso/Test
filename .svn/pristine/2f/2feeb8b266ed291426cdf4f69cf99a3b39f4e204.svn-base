@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          body{
+
+          }
+
+          #txt{
+            border: 1px solid #ff6633;
+            border-radius: 10px;
+            width: 90%;
+            height: 70px;
+            margin-left: 5%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+          }
+
+          #people{
+            margin-left: 10px;
+            margin-top: 10px;
+          }
+
+          #userimg{
+            display: inline-block;
+          }
+
+          #userimg img{
+            border-radius: 50%;
+          }
+
+          #username{
+            display: inline-block;
+            position: relative;
+            bottom: 6px;
+          }
+
+          #content{
+            margin-left: 10px;
+          }
+
+          #word{
+            display: inline-block;
+          }
+
+          #new img{
+            border-radius: 50%;
+            position: absolute;
+            right: 0px;
+            top: 300px;
+          }
+      </style>
+  </head>
+  <body>
+      <div id="list">
+
+      </div>
+      <div id="new" onclick="newlist()">
+          <img src="../icon/add.png" alt="" width="50px" height="50px">
+      </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript" src="../script/doT.js"></script>
+  <script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+  <script type="text/javascript" src="../script/APP_INFO.js"></script>
+  <!-- 模板 -->
+    <script id="articleTemp" type="text/x-dot-template">
+        {{~it:value:index}}
+            <div id="txt" onclick='showById("{{= value.id }}","{{= value.author.nickName}}","{{= value.createdAt}}")'>
+              <div id="people">
+                <div id="userimg">
+                  <img src={{= value.author.headimage}} alt="" width="25px" height="25px">
+                </div>
+                <div id="username">
+                  {{= value.author.nickName}}
+                </div>
+              </div>
+              <div id="content">
+                <div id="word">{{= value.title }}</div>......
+              </div>
+            </div>
+        {{~}}
+    </script>
+  <script type="text/javascript">
+        apiready = function(){
+          showArticleList();
+          api.addEventListener({
+            name: 'Shise_frame_txt_reload'
+            }, function(ret, err) {
+                //alert(JSON.stringify(ret));
+                if(ret){
+                    //alert(ret.value.id);//注意封装在ret.value中
+                    articleId=ret.value.id;
+                    showArticleList();
+                }
+            });
+      };
+      function showArticleList(){
+          var client = new Resource(APP_INFO.app_id, APP_INFO.app_key);
+          var Model = client.Factory("article");
+          Model.query({
+              filter:{
+                  "include":"authorPointer",//关键代码。pointer类型的字段名+Pointer
+                  "where":{"keyWord":"rizhi"},
+                  fields:{"id": true, "title": true, "imgarry": true,"creatorName": true,"author":true,"createdAt":true}//或者["id","make","model"]
+              }
+          }, function(ret,err){
+              if(err){
+                  //处理错误 err
+              }else{
+                  //处理数据 ret
+                  //alert(JSON.stringify(ret));
+                  //编译模版
+                  //alert(JSON.stringify(ret));
+                  var interation = doT.template( $('#articleTemp').html() );
+                  //将数据显示到网页中
+                  $( '#list' ).html(interation( ret ));
+              }
+          })
+      }
+      function showById(id,author,time){
+          //alert(id);
+          api.openWin({
+              name: 'Shise_frame_txt_detail',
+              url: 'Shise_frame_txt_detail.html',
+              pageParam:{
+                  "id":id,
+                  "author":author,
+                  "time":time
+              }
+          });
+      }
+      function opentxt(){
+        api.openWin({
+            name: 'txtdetail.html',
+            url: '../html/txtdetail.html',
+            pageParam: {
+                name: 'test'
+            }
+        });
+
+      }
+
+      function newlist(){
+        api.openWin({
+            name: 'newlist',
+            url: '../html/newlist.html',
+            pageParam: {
+                name: 'test'
+            }
+        });
+
+      }
+  </script>
+  </html>

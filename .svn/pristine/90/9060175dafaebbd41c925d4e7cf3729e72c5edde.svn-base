@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+            font-family: "微软雅黑"; 
+            background-color: #FFF; 
+        }
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .fengGeXian {
+        	width: 100%;
+        	height: 1px;
+        	background-color: #efefef;
+        }
+        .top_1 {
+        	background-color: #ff6633;
+        	height: 38px;
+        	width: 100%;
+        	padding-top: 7.5px;
+        }
+        .searchBox {
+        	width: 73%;
+        	height: 30px;
+        	margin-left: 15px;
+        	padding-left: 15px;
+        	background-color: #ffffff;
+        	border-radius: 15px;
+        	float: left;
+        }
+        .searchFontSize {
+        	font-size: 14;
+        	color:#ffffff;
+        	font-family: "微软雅黑";
+        	float: left;
+        	padding-top: 3px;
+        	padding-left: 15px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="top_1" id="header">
+    	<div class="searchBox">
+         <form >
+             <input type="text" name="neirong" id="shuru" style="width: 100% ;height:30px;border-radius: 15px; text-indent: 6px;border:0px;outline: none; font-size:18px;line-height: 30px; padding: 0px;"placeholder="请输入标题关键字" ;color:#f2f2f2;>
+         </form>   
+        </div>
+    	<div class="searchFontSize" onclick="chaxun()">搜索</div>
+    </div>
+    
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/APP_INFO.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+
+        // openFrame(retToFrame);
+    };
+    function openFrame(retToFrame){
+        var header = $api.byId('header');
+        var headerH = $api.offset(header).h;
+        $api.fixStatusBar(headerH);
+        var main_height = api.winHeight-95;
+        api.openFrame({
+            name: 'souSuo-frame',
+            url: '../frame/souSuo-frame.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: main_height
+            },
+            animation:{
+                type:'none',
+                duration:300               
+            },
+            pageParam: {
+                name: retToFrame
+            },
+            bounces: false
+        });
+    }
+
+
+    //获取查询数据 传参给frame页
+    var retToFrame;
+    function chaxun() {
+        var wen=document.getElementById("shuru");
+        var wenzi=wen.value;
+        if (wenzi!='') {
+            // alert(wenzi);
+            var client = new Resource(APP_INFO.app_id, APP_INFO.app_key);
+            var Model = client.Factory("article");
+                Model.query({
+                    filter:{
+                        "fields":{"id":true,"title":true,"keyWord":true,"imgarry":true,"readNum":true,"dianZanNum":true,"author":true},
+                        "include":"authorPointer",
+                        "where":{
+                            "title":{
+                                "like":wenzi
+                            }
+                        }
+                    }
+                }, function(ret,err){
+                    if(err){
+                        //处理错误 err
+                        // alert("失败啦"+JSON.stringify(err));
+                    }else{
+                        //处理数据 ret
+                        // alert("成功了"+JSON.stringify(ret));
+                        retToFrame=ret;
+
+                    }
+                    api.closeFrame({
+                            name: 'souSuo-frame'
+                        });
+                    openFrame(retToFrame);
+                })
+        }else{
+             
+        }
+   
+
+        //前面已经查询到了相关信息 下面进行写出来
+        
+        
+
+    }
+</script>
+</html>

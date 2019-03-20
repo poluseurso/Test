@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+    	html {
+    		font-size: 125%;
+    	}
+        .center {
+        	width: 100%;
+        	height: 40rem;
+        	overflow-y: scroll;
+        	overflow-x: hidden;
+        }
+        .back_color {
+        	background-color: #ff6633;
+        }
+        .zhuangtai_color {
+        	background-color: #ff6633;
+        }
+        .daohang_color {
+        	background-color: white;
+        }
+
+        .font_color_main {
+        	color: #ff6633;
+        }
+
+        .font_color_ccc {
+        	color: #ccc;
+        }
+
+        .font_color_333 {
+        	color: #333;
+        }
+
+        .font_size_14 {
+        	font-size: 0.7rem;
+        }
+
+        .font_size_12 {
+        	font-size: 0.6rem;
+        }
+
+        .font_size_16 {
+        	font-size: .8rem;
+        }
+
+        .main_img {
+        	display: block;
+        	width: 100%;
+        	height: 11.75rem;
+        }
+
+        .int {
+        	padding:.75rem 0rem .75rem 0rem;
+        	margin-left: .75rem;
+        	margin-right: .75rem;
+        	border-bottom-color: #f2f2f2;
+        	border-bottom-style: solid;
+        	border-bottom-width: 1px;
+        }
+
+        .p_cen {
+        	text-align: center;
+        }
+
+        .touxiang {
+        	width: 2.1rem;
+        	height: 2.1rem;
+        	/*margin-left: .75rem;*/
+        	margin-right: .75rem;
+        	margin-top: .25rem;
+        	border-radius: 50%;
+        }
+
+        .author {
+        	position: relative;
+        	border-bottom-color: #f2f2f2;
+        	border-bottom-style: solid;
+        	border-bottom-width: 1px;
+        	margin-left: .75rem;
+        	margin-right: .75rem;
+        	padding-bottom: .25rem;
+        }
+
+        .au_name {
+        	position: absolute;
+        	top:.55rem;
+        	left: 2.75rem;
+        }
+
+        .sign {
+        	position: absolute;
+        	top:1.6rem;
+        	left: 2.75rem;
+        }
+
+        .describe {
+        	padding: 0rem .75rem .75rem .75rem;
+        	border-bottom-color: #f2f2f2;
+        	border-bottom-style: solid;
+        	border-bottom-width: 1px;
+        }
+
+        .clearfix:after {content:"";display: block;height: 0;clear:both;}
+        .clearfix {
+        	zoom:1;
+        }
+
+        .buy {
+            width: 100%;
+            height: 5rem;
+        }
+
+        .tishi {
+            text-align: center;
+            padding: 3.25rem 3.5rem;
+        }
+
+        .lock {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .mon {
+            font-size: .9rem;
+            color: #ff6633;
+        }
+
+        .pay {
+            position: relative;
+            text-align: center;
+            display: block;
+            border-radius: 1rem;
+            background-color: #ff6633;
+            width: 80%;
+            height: 2.5rem;
+            margin:0rem auto;
+        }
+
+        .pay_img {
+            width: 1.5rem;
+            height: 1.5rem;
+            position: absolute;
+            top:.5rem;
+            left:3rem;
+            /*margin-top: .25rem;*/
+            /*padding-bottom: .1rem;*/
+        }
+
+        .pay_text {
+            color: white;
+            font-size: .9rem;
+            line-height: 2.5rem;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="center">
+    	<div class="head">
+    		<img src="../image/fish.jpg" alt="" class="main_img">
+    		<div class="int">
+    			<p class="name font_size_16 font_color_333 p_cen">剁椒鱼头</p>
+    			<p class="num font_size_14 font_color_333 p_cen">7.7综合评分</p>
+    		</div>
+    		<div class="author">
+    			<img src="../image/touxiang.jpg" alt="" class="touxiang">
+    			<span class="au_name font_size_14">作者</span>
+    			<span class="sign font_size_14">吃、往死了吃</span>
+    		</div>
+    	</div>
+    	<div class="step">
+    		<div class="describe">
+    			<span class="de font_size_14 ">菜谱描述：</span>
+    			<p class="de font_size_12">剁椒鱼头属湘菜系，是湘潭的一道名菜。以鱼头的“味鲜”和剁辣椒的“辣”为一体，风味独具一格。火辣辣的红剁椒，覆盖着白嫩嫩的鱼头肉，冒着热腾腾清香四溢的香气。湘菜香辣的诱惑，在“剁椒鱼头”上得到了完美体现。蒸制的方法让鱼头的鲜香被尽量保留在肉质之内，剁椒的味道又恰到好处地渗入到鱼肉当中，鱼头糯软，肥而不腻，咸鲜微辣。
+				这次用的剁椒，是我自已制做的，鲜香适度，咸辣程度也是我所能接受的，配上蒸得鲜嫩的鱼肉，让我这个吃惯海鱼，严重鄙视淡水鱼泥腥气的人，也不得不被它征服</p>
+    		</div>
+    		<div class="buy">
+                <div class="tishi">
+                   <img src="../icon/lock.png" alt="" class="lock">
+                    <span class="mon">以下内容需购买后解锁</span> 
+                </div>
+                
+                <a href="" class="pay">
+                    <img src="../icon/unbuy.png" alt="" class="pay_img">
+                    <span class="pay_text">购买 0.8元</span>
+                </a>
+            </div>
+    	</div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        
+    };
+</script>
+
+</html>

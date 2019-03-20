@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          *{
+            padding: 0rem;
+            margin: 0rem;
+            list-style: none;
+            text-decoration: none;
+          }
+
+          html{
+            font-size: 20px;
+          }
+
+          #taber{
+            position: fixed;
+            bottom: 0rem;
+            color: #ccc;
+            font-size: 14px;
+            width: 100%;
+          }
+
+          #taber li{
+            float: left;
+            width: 25%;
+            height: 2.45rem;
+          }
+
+          #shise img{
+            margin-left: 36%;
+            margin-top: 0.3rem;
+          }
+
+          #shiyun img{
+            margin-left: 36.22%;
+            margin-top: 0.3rem;
+          }
+
+          #shiling img{
+            margin-left: 36.12%;
+            margin-top: 0.3rem;
+          }
+
+          #shiyuan img{
+            margin-left: 37.22%;
+            margin-top: 0.3rem;
+          }
+
+          #taber li div{
+            text-align: center;
+            height: 0.7rem;
+          }
+
+          .active{
+            background: #e2e2e2;
+            color: #ff6633;
+          }
+
+          #tabline{
+            width: 100%;
+            height: 0.05rem;
+            position: fixed;
+            bottom: 2.45rem;
+            background: #f2f2f2;
+          }
+      </style>
+  </head>
+  <body>
+          <div id="tabline">
+
+          </div>
+          <ul id="taber">
+              <li id="shise" class="active">
+                  <img src="../icon/food.png" alt="" width="25px" height="25px">
+                  <div>食色</div>
+              </li>
+              <li id="shiyun">
+                  <img src="../icon/uncooker.png" alt="" width="25px" height="25px">
+                  <div>食韵</div>
+              </li>
+              <li id="shiling">
+                  <img src="../icon/unold.png" alt="" width="25px" height="25px">
+                  <div>食灵</div>
+              </li>
+              <li id="shiyuan">
+                  <img src="../icon/unbool.png" alt="" width="25px" height="25px">
+                  <div>食源</div>
+              </li>
+          </ul>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+
+      };
+  </script>
+  </html>

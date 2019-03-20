@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+            background: #ff6633;
+        }
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .juzhong {
+        	width: 100% ;
+        	padding-top: 35%;
+        }
+        .pic {
+        	/*position:fixed;*/
+        	width:100%;
+        	/*height:100%;*/
+        }
+        .bottom {
+            position: fixed;
+            bottom: 0px;
+            width: 100%;
+            height: 30px;
+            font-size: 18px;
+            color: #fff;
+            text-align: right;
+        }
+        .bottom {
+            position: fixed;
+            bottom: 0px;
+            width: 100%;
+            height: 60px;
+            font-size: 18px;
+            color: #fff;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="juzhong"><img id="picture" class="pic" src=url  onclick="guanbipage()"></div>
+    <div class="bottom" onclick="download(url)">下载图片</div>
+    <div class="bottom1" onclick="download1(url)" >缓存图片</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-pull-refresh.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/aui-scroll.js"></script>
+<script type="text/javascript">
+	var url;
+    var color;
+    apiready = function(){
+      api.setStatusBarStyle({
+            style:'light',
+            color: '#ff6633'
+      });
+
+
+        url=api.pageParam.name;
+        // alert(url);
+        document.getElementById("picture").src=""+url+"";
+        // $('#picture').src=""+url+"";
+    };
+    function guanbipage(){
+    	api.closeWin();
+        color='#ff6633';
+        gaibianbarcolor(color)
+        color='#fff';
+    }
+
+    function gaibianbarcolor(color){
+          //改状态栏颜色
+          api.setStatusBarStyle({
+            style:'light',
+            color: color
+        });
+    }
+    function download(url){
+        api.download({
+            url: url,
+            savePath: '/',
+            report: true,
+            cache: true,
+            allowResume: true
+        }, function(ret, err) {
+            if (ret.state == 1) {
+                //下载成功
+                alert(url);
+                alert(233);
+            } else {
+
+            }
+        });
+    }
+        function download1(url){
+            api.imageCache({
+                    url: url
+                }, function(ret, err) {
+                    var url = ret.url;
+                    alert(url);
+                    alert(JSON.stringify(ret));
+                    alert("chenggong");
+                });
+    }
+</script>
+</html>

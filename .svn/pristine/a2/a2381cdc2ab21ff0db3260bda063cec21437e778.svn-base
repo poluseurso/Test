@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+         font-family: "微软雅黑";    
+        }
+
+
+        * {
+        	margin: 0px;
+        	padding: 0px;
+        }
+        .clearfix:after {content:"";display:block;height:0px;clear:both;}
+        .clearfix {zoom:1;}
+        .top_1 {
+        	background-color: #ff6633;
+        	height: 38px;
+        	width: 100%;
+        	padding-top: 7.5px;
+        }
+        .searchBox {
+        	width: 73%;
+        	height: 30px;
+        	margin-left: 15px;
+        	padding-left: 15px;
+        	background-color: #ffffff;
+        	border-radius: 15px;
+        	float: left;
+        }
+        .searchFontSize {
+        	font-size: 14;
+        	color:#ffffff;
+        	font-family: "微软雅黑";
+        	float: left;
+        	padding-top: 3px;
+        	padding-left: 15px;
+        }
+        .top_2 {
+        	width: 100%;
+        	height: 30px;  
+        	border-bottom-width: 100%;       
+        	border-bottom: 1px solid  #ccc;  
+        	position: relative;
+        }
+        .choose {
+        	width: 100%;
+        	padding-top: 5px;
+        	background-color: #ffffff;
+        }
+        .top2_li {
+        	display: inline;
+        	padding-left: 4%;
+        	padding-right: 4%;
+        	font-size: 16px;
+        	color: #ff6633;
+        	font-family: "微软雅黑";
+
+        }
+        .bottomLine {
+         	border-bottom-width: 100%;       
+        	border-bottom: 3px solid  #ff6633; 
+        	position: absolute;
+        	width: 60px;
+        	height: 5px;
+        	top: 23px;
+        	/*left: 0px;*/
+        }
+
+        
+    </style>
+</head>
+<body>
+	<div class="header" id="header">
+	    <div class="top_1">
+	    	<div class="searchBox"></div>
+	    	<div class="searchFontSize" onclick="search()">搜索</div>
+	    </div>
+	    <div class="top_2">
+	    	<ul class="choose" >
+	    		<li class="tuiJian top2_li"  onclick="doMove()">推荐</li>   <!--onclick="copyText()"-->
+	    		<li class="shiLiao top2_li"  onclick="doMove()">食疗</li>
+	    		<li class="jianFei top2_li"  onclick="doMove()">减肥</li>
+	    		<li class="life top2_li" onclick="doMove()">生活</li>
+	    		<li class="zhongYi top2_li" onclick="doMove()">中医</li>
+
+	    	</ul>
+	    	<div class="bottomLine" id="moveDiv" style="left: 0px;"></div>
+	    </div>
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+      	var header = $api.byId('header');
+        var headerH = $api.offset(header).h;
+        $api.fixStatusBar(headerH);
+        var main_height = api.winHeight-95;
+        api.openFrame({
+            name: 'shiLing-frame',
+            url: '../frame/shiLing-frame.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: main_height
+            },
+            animation:{
+                type:'none',
+                duration:300               
+            },
+            pageParam: {
+                name: 'value'
+            },
+            bounces: false
+        });       
+    };
+    function copyText()
+    {
+        api.openWin({
+        name: 'souSuo',
+        url: './souSuo.html',
+        pageParam: {
+            name: 'test'
+             }
+        });
+    }
+    
+    function search()
+    {
+        api.openWin({
+        name: 'souSuo',
+        url: './souSuo.html',
+        pageParam: {
+            name: 'test'
+             }
+        });
+    }
+function doMove() { 
+    var _div=document.getElementById("moveDiv"); 
+    var _curLeft=parseInt(_div.style.left); 
+    var _distance=60; 
+    if (_curLeft-_distance>=-60) { 
+    _div.style.left=(_curLeft+_distance)+"px"; 
+    window.setTimeout("doMove()",50); 
+    } 
+    } 
+</script>
+</html>

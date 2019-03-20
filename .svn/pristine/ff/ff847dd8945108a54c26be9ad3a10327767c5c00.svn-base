@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+           font-family: "微软雅黑"; 
+        }
+        * {
+        	padding:0px;
+        	margin: 0px;
+        }
+        .clearfix:after {content:"";display:block;height:0px;clear:both;}
+        .clearfix {zoom:1;}
+        .top {
+        	height: 45PX;
+        	width: 100%;
+        	position: relative;
+        }
+        .font_return {
+        	position: absolute;
+        	top:0px;
+        	left:15px; 
+        	font-size: 32px;
+        	color: #FF6633; 
+        }
+        .title {
+        	width: 100%;
+        	height: 45px;
+			float: left;
+			margin:0px auto;
+			text-align:center;
+			line-height:45px;
+			font-size: 16px;
+        }
+        .guanZhu {
+        	position: absolute;
+        	width: 80px;
+        	height: 32px;
+        	margin-top: 4px;
+        	margin-bottom: 10px;
+        	top:2px;
+        	right:15px; 
+        	border-radius: 10px;
+        	background-color: #FF6633;
+        	text-align:center;
+			line-height:32px;
+
+        }
+        .fengGeXian {
+        	width: 100%;
+        	height: 1px;
+        	background-color: #efefef;
+        }
+        .content {
+        	width: 100%;
+        	height: 100px;
+        }
+        .picture {
+        	width: 37px;
+        	height: 37px;
+        	margin:5px auto;
+
+        }
+        .picture img {
+        	width: 37px;
+        	height: 37px;
+        	border-radius: 37px;	
+        } 
+        .ConcentTitle {
+        	width: 100%;
+        	height: 37px;
+        	text-align:center;
+			line-height:37px;
+			color: #ff6633;
+        }
+        .miaoshu {
+        	width: 100%;
+        	height: 37px;
+        	position: relative;
+        }
+        .author {
+        	position: absolute;
+        	left: 15px;
+        	font-size:14px; 
+        	color: #ccc;
+        }
+        .time {
+        	position: absolute;
+        	right: 15px;
+        	font-size:14px; 
+        	color: #ccc;
+        }
+        .WenZhang {
+        	margin-top: 5px;
+        	margin-left: 15px;
+        	margin-right: 15px;
+        	font-size: 13px;
+        	color: #000;
+        	line-height:28px;
+
+        }
+        .bottom {
+        	width: 100%;
+        	height: 47px;
+        	position: absolute;
+        	bottom: 0px;
+        	background-color: #fff;
+        	z-index: 10;
+        }
+        .function {
+        	position: absolute;
+        	width: 100%;
+        	top: 9px;
+        	left: 9px;
+        	height: 29px;
+        	
+        }
+        .write {
+        	position: absolute;
+        	width: 45%;
+        	height: 26px;
+        	top:0px;
+        	left:0px;
+        	border:1px solid #ccc;
+        	border-radius: 19px;
+        	text-align:center;
+			line-height:26px;
+        	color: #ccc;
+        	font-size: 14px;
+
+        }
+        .pingLun img {
+        	position: absolute;
+        	width: 30px;
+        	height: 30px;
+        	top: 0px;
+        	right:130px;	
+        }
+        .dianZan img {
+        	position: absolute;
+        	width: 30px;
+        	height: 30px;
+        	top: 0px;
+        	right:75px;	
+        }
+        .FenXiang img {
+        	position: absolute;
+        	width: 20px;
+        	height: 20px;
+        	top: 4px;
+        	right:30px;	
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+    	<div class="font_return"><</div>
+    	<div class="title">早餐</div>
+    	<div class="guanZhu">关注</div>
+    </div>
+    <div class="fengGeXian"></div>
+    <div class="content">
+    	<div class="picture"><img src="../image/3-1(1).jpg"></div>
+    	<div class="ConcentTitle">换季食物需知</div>
+    	<div class="miaoshu">
+    		<div class="author">作者：小刘</div>
+    		<div class="time">时间：2017-12-13</div>
+    	</div>
+    	<div class="WenZhang">
+    		坦白讲,腾讯与阿里的竞争不是一天两天了,在很多领域都有竞争,最开始从支付,到滴滴快的时候的出行,再到新零售,共享单车,真的是打得不可开交。
+
+当然这些竞争更多的是基于自己的利益,都是为了抢地盘,但不可否认,这很多次的竞争之中,似乎真没抢到什么便宜,尤其滴滴合并了快的,可能真是马云的痛。
+
+但这次马云又对马化腾出手了,瞄准的还是出行领域,阿里旗下的高德地图,在昨天3月27日宣布推出了顺风车业务,将在成都、武汉两地率先上线,同时开启北京、上海、广州、深圳、杭州等城市的车主招募,之后可能会扩展到全国。
+
+其实关于打车这个领域,我们知道90%的市场是滴滴的,虽然最近美团也参与进来了,但无论是滴滴还是美团都是属于腾讯系的,所以高德此举明显可以看作是马云对马化腾的又一次出手。
+
+但高德做顺风车也是有点意思,他完全不抽成,要知道其他竞争对手是要抽取10%的佣金的,但高德完全不抽佣金,不过也不参与补贴战,感觉完全没有任何商业目的。
+
+有人说马云可能还是对之前滴滴合并了快的的事情放不下,于是硬要搞点顺风车的业务来恶心下马化腾,也有人说马云就是出行公益的心态来
+    	</div>
+    </div>
+    <div class="bottom">
+    	<div class="fengGeXian"></div>
+    	<div class="function">
+    		<div class="write">写评论.....</div>
+    		<div class="pingLun"><img src="../image/3-1(4).png"></div>
+    		<div class="dianZan"><img src="../image/3-1(5).png"></div>
+    		<div class="FenXiang"><img src="../image/3-1(3).png"></div>
+    	</div>
+    </div>
+</body>
+<script type="text/javascript" src="api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        
+    };
+</script>
+</html>

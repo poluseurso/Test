@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          #header{
+            background-color: #ff6633;
+            width: 100%;
+            height: 50px;
+          }
+
+          #header #title{
+            font-size: 18px;
+            color: #fff;
+            line-height: 50px;
+            text-align: center;
+            width: 100%;
+            height: 50px;
+          }
+          #beback{
+            width: 20px;
+            height: 20px;
+            position: relative;
+            bottom: 35px;
+            left: 20px;
+          }
+
+          #message{
+            width: 100%;
+            height: 40px;
+          }
+
+          #author{
+            margin-left: 5%;
+            width: 120px;
+            font-size: 14px;
+            line-height: 40px;
+            display: inline-block;
+          }
+
+          #time{
+            margin-left: 30%;
+            display: inline-block;
+            font-size: 14px;
+            line-height: 40px;
+          }
+
+          #content{
+            width: 90%;
+            margin-left: 5%;
+            top: 50px;
+            height: 20px;
+          }
+
+      </style>
+  </head>
+  <body>
+      <div id="header">
+          <div id="title">
+          </div>
+          <div id="beback" onclick="beback()">
+              <img src="../icon/back_fff.png" alt="" width="20px" height="20px">
+          </div>
+      </div>
+      <div id="message">
+        <div id="author"></div>
+        <div id="time"></div>
+      </div>
+      <div id="content">
+          <div id="content">
+
+          </div>
+      </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript" src="../script/doT.js"></script>
+  <script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+  <script type="text/javascript" src="../script/APP_INFO.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+          var myid = api.pageParam.id;
+          var myauthor = api.pageParam.author;
+          var time = api.pageParam.time;
+          var client = new Resource(APP_INFO.app_id, APP_INFO.app_key);
+          var Model = client.Factory("article");
+          Model.get({"_id":myid}, function(ret,err){
+              if(err){
+                  //处理错误 err
+              }else{
+                  //处理数据 ret
+                  time = time.slice(0,10);
+                  $("#title").html(ret.title);
+                  $("#content").html(ret.content);
+                  $('#author').html(myauthor);
+                  $('#time').html(time);
+              }
+          })
+      };
+
+      function beback(){
+        api.closeWin({
+            name: 'Shise_frame_txt_detail'
+        });
+
+      }
+  </script>
+  </html>

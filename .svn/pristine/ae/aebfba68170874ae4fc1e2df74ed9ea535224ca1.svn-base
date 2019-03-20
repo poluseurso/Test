@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+            font-family: "微软雅黑"; 
+            background-color: #FFF; 
+        }
+        .fengGeXian {
+        	width: 100%;
+        	height: 1px;
+        	background-color: #efefef;
+        }
+        .DafengGeXian {
+        	width: 100%;
+        	height: 3px;
+        	background-color: #efefef;
+        }
+        * {
+        	margin: 0px;
+        	padding: 0px;
+        }
+        .top {
+        	width: 100%;
+        	height: 121px;
+        	background-color: #ff6633;
+        	position: relative;
+        }
+        .drow img {
+        	width: 80px;
+        	height: 80px;
+        	border-radius: 80px;
+        	position: absolute;
+        	bottom:15px; 
+        	left:15px;
+        }
+        .name {
+        	position: absolute;
+        	bottom:65px; 
+        	left:100px;
+        	color: #FFF;
+        	font-size: 18px;
+        }
+        .zan {
+        	position: absolute;
+        	bottom:15px; 
+        	left:100px;
+        	color: #FFF;
+        	font-size: 14px;
+        }
+        .fensi {
+        	position: absolute;
+        	bottom:15px; 
+        	left:70%;
+        	color: #FFF;
+        	font-size: 14px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="top" id="header">
+    		<div class="drow"><img  id="headimage" src="../icon/head.png" onclick="openpic(sr)" ></div>
+    		<div class="name" id="author"></div>
+    		<div class="zan">获赞：11520</div>
+    		<div class="fensi">粉丝：1234</div>
+    </div>
+    
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-pull-refresh.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/aui-scroll.js"></script>
+<script type="text/javascript">
+    var userid;
+    apiready = function(){   
+        userid=api.pageParam.name;
+        getInfo(userid);
+        open();
+    };
+    function open(){
+        var header = $api.byId('header');
+        var headerH = $api.offset(header).h;
+        $api.fixStatusBar(headerH);
+        var main_height = api.winHeight-95;
+        api.openFrame({
+            name: 'touXiang-frame',
+            url: '../frame/touXiang-frame.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: main_height
+            },
+            animation:{
+                type:'none',
+                duration:300               
+            },
+            pageParam: {
+                name: userid
+            },
+            bounces: false
+        });
+    }
+    function openpic(sr){
+        api.openWin({
+        name: 'shiLing_fangdaPic',
+        url: '../html/shiLing_fangdaPic.html',
+            pageParam: {
+            name: sr
+    }
+});
+    }
+    var sr;
+    function getInfo(userid){
+        var client = new Resource("A6077910409729", "4ED601CF-94BA-9C80-2CB8-F4361A840A58");
+        var Model = client.Factory("user");
+        Model.get({"_id":userid }, function(ret,err){
+            if(err){
+                //处理错误 err
+                // alert("失败"+JSON.stringify(err));
+            }else{
+                //处理数据 ret
+                // alert("成功111"+JSON.stringify(ret));
+                sr=ret.headimage.url;
+                document.getElementById("headimage").src=""+sr+"";
+                $('#author').html(ret.nickName);
+            }
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+           font-family: "微软雅黑"; 
+           /*background: #ccc；*/
+           opacity:1;
+            filter:alpha(opacity=0);
+        }
+        * {
+            padding:0px;
+            margin: 0px;
+        }
+        .content { 
+            position: fixed;
+            bottom: 0px;
+        	width: 100%;
+            height: 65%;
+        	border-radius:10px;
+        	background: #fff;
+            padding-top: 38px;
+            
+        }
+        .sum {
+        	width: 100%;
+        	height: 30px;
+        	position: absolute;
+        	top: 0px;
+        	line-height: 30px;
+        	text-align: center;
+       		background: #fff;
+        	border-radius:10px;
+            border-top: 1px solid #f2f2f2;
+        }
+        .rongqi {
+            overflow-y:auto;
+            width: 100%;
+            height: 100%;
+ 
+        }
+        .headphoto {
+        	margin-left: 15px;
+        	width: 50px;
+        	height: 70px;
+        	float: left;
+        	/*display: inline;*/
+        }
+        .photo {
+        	width: 45px;
+        	height: 45px;
+        	border-radius: 45px;
+            border: 1px solid #ccc;
+        }
+        .wenzi {
+        	width: 100%;
+        	/*float: left;
+        	display: inline;*/
+        } 
+        .name {
+        	color: #ccc;
+        	font-size: 14px;
+        	padding-bottom: 3px;
+        }
+        .yuyan {
+        	color: #000;
+        	font-size: 16px;
+        	padding-bottom: 3px;
+        }
+        .time {
+        	color: #ccc;
+        	font-size: 12px;
+        	padding-bottom: 10px;
+        }
+        .fengexian {
+        	width: 90%;
+        	height: 1px;
+        	background-color: #666;
+        	margin: 0px auto;
+        	margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+    	<div class="sum">2.5w条评论</div>
+        <div class="rongqi" id="rongqi">
+  <!--       	<div class="neirong1">
+        		<div class="headphoto"><img class="photo" src="../image/3-1(7).jpg"></div>
+        		<div class="wenzi">
+        			<div class="name">刘比如</div>
+        			<div class="yuyan">哥们就厉害了，这就深深的把猫迷住了。</div>
+        			<div class="time">2018年05月25日</div>
+        		</div>
+        	</div>
+        	<div class="fengexian"></div>-->
+        </div>
+    </div>
+</body>
+<script id="articleTemp" type="text/x-dot-template">
+    {{~it:value:index}}
+        <div class="neirong1">
+                <div class="headphoto"><img class="photo" src="{{=value.authorId.headimage.url}}"></div>
+                <div class="wenzi">
+                    <div class="name">{{=value.authorId.username}}</div>
+                    <div class="yuyan">{{=value.content}}</div>
+                    <div class="time">{{=value.createdAt}}</div>
+                </div>
+            </div>
+        <div class="fengexian"></div>
+    {{~}}
+</script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/APP_INFO.js"></script>
+<script type="text/javascript">
+    var page_id;
+    apiready = function(){
+        page_id=api.pageParam.id;
+         querypinglun();
+    };
+
+    function querypinglun(page_id){
+    var client = new Resource("A6077910409729", "4ED601CF-94BA-9C80-2CB8-F4361A840A58");
+    var Model = client.Factory("comment");
+        Model.query({
+            filter:{
+                "fields":{"id": true, "articleId": true, "authorId": true,"content":true,"createdAt":true},
+                //或者["id","make","model"]
+               "include":"authorIdPointer",
+               "where":{"articleId": page_id }
+            }
+        }, function(ret,err){
+        if(err){
+        //处理错误 err
+         alert(JSON.stringify( err ));
+        }else{
+        //处理数据 ret
+        alert(JSON.stringify( ret ));
+            var interation = doT.template( $('#articleTemp').html() );
+            alert(interation( ret ));
+            $( '#rongqi' ).append(interation( ret ));
+        }
+    })
+}
+</script>
+</html>

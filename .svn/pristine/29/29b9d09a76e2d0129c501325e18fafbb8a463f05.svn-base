@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+            font-family: "微软雅黑"; 
+        }
+        * {
+        	margin: 0px;
+        	padding: 0px;
+        }
+        .clearfix:after {content:"";display:block;height:0px;clear:both;}
+        .clearfix {zoom:1;}
+        .neiRong1 {
+            width: 100%;
+            height: 145px;
+        }
+        .fengGeXian {
+            width: 100%;
+            height: 6px;
+            background-color: #efefef;
+        }
+        .content {
+            background-color: #fff;
+        }
+        .title {
+            color: #000;
+            padding-left: 15px;
+            padding-top: 15px;
+            padding-bottom: 6px;
+            font-size: 14px;
+        }
+        .picture {
+            display: inline;
+
+        }
+        .picture img {
+            width:105px;
+            height: 70px;
+            float: left;
+            padding-left: 12px;
+        }
+        .otherInformation {
+            display: inline;
+        }
+        .miaoshu {
+            float: left;
+            padding-top: 6px;
+            padding-left: 14px;
+            font-size: 10px;
+            color: #cccccc;
+            font-family: "微软雅黑";
+        }
+        .content {
+            background: #fff;
+        }
+        .youqingtishi {
+            margin:0px auto;
+            color: #ccc;
+            padding-top: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="tiShi" id="tiShi">
+        <!-- <div class="youqingtishi">没有相关信息，请换个关键词查询吧</div> -->
+    </div>
+</body>
+<script id="articleTemp" type="text/x-dot-template">
+    {{~it:value:index}}
+            <div class="neiRong1" onclick="copyText('{{=value.id}}')">
+                <div class="title" name="{{=value.id}}">{{=value.title}}</div>
+                <div class="picture clearfix">
+                    <div class="p"><img src="{{=value.imgarry[0]}}"></div>
+                    <div class="p"><img src="{{=value.imgarry[1]}}"></div>
+                    <div class="p"><img src="{{=value.imgarry[2]}}"></div>
+                </div>
+                <div class="otherInformation">
+                    <div class="author miaoshu">{{=value.author.nickName}}</div>
+                    <div class="ReadNum miaoshu">{{=value.readNum}}阅读</div>
+                    <div class="PingLun miaoshu">99评论</div>
+                </div>
+            </div>
+            <div class="fengGeXian"></div>
+    {{~}}
+</script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/APP_INFO.js"></script>
+<script type="text/javascript">
+    var jieshouRet;
+    apiready = function(){
+        jieshouRet=api.pageParam.name;
+        // alert(JSON.stringify( jieshouRet ));
+            // alert(JSON.stringify( jieshouRet ));
+            var interation = doT.template( $('#articleTemp').html() );
+            // alert(interation( jieshouRet ));
+            $( '#tiShi' ).html(interation( jieshouRet ));
+            if (jieshouRet=='') {
+               var x='<div class="youqingtishi">没有相关信息，请换个关键词查询吧</div>';
+               $( '#tiShi' ).html(x);
+            }
+    };
+function copyText(id){
+    api.openWin({
+    name: 'xiangQing',
+    url: '../html/xiangQing.html',
+    pageParam: {
+        id: id
+         }
+    });
+}
+</script>
+</html>

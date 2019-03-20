@@ -1,0 +1,455 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+    	html {
+    		font-size: 125%;
+    	}
+        .center {
+        	width: 100%;
+        	height: 40rem;
+        	overflow-y: scroll;
+        	overflow-x: hidden;
+        }
+        .back_color {
+        	background-color: #ff6633;
+        }
+        .zhuangtai_color {
+        	background-color: #ff6633;
+        }
+        .daohang_color {
+        	background-color: white;
+        }
+
+        .font_color_main {
+        	color: #ff6633;
+        }
+
+        .font_color_ccc {
+        	color: #ccc;
+        }
+
+        .font_color_333 {
+        	color: #333;
+        }
+
+        .font_size_14 {
+        	font-size: 0.7rem;
+        }
+
+        .font_size_12 {
+        	font-size: 0.6rem;
+        }
+
+        .font_size_16 {
+        	font-size: .8rem;
+        }
+
+        .main_img {
+        	display: block;
+        	width: 100%;
+        	height: 11.75rem;
+        }
+
+        .int {
+        	padding:.75rem 0rem .75rem 0rem;
+        	margin-left: .75rem;
+        	margin-right: .75rem;
+        	border-bottom-color: #f2f2f2;
+        	border-bottom-style: solid;
+        	border-bottom-width: 1px;
+        }
+
+        .p_cen {
+        	text-align: center;
+        }
+
+        .touxiang {
+        	width: 2.1rem;
+        	height: 2.1rem;
+        	/*margin-left: .75rem;*/
+        	margin-right: .75rem;
+        	margin-top: .25rem;
+        	border-radius: 50%;
+        }
+
+        .author {
+        	position: relative;
+        	border-bottom-color: #f2f2f2;
+        	border-bottom-style: solid;
+        	border-bottom-width: 1px;
+        	margin-left: .75rem;
+        	margin-right: .75rem;
+        	padding-bottom: .25rem;
+        }
+
+        .au_name {
+        	position: absolute;
+        	top:.55rem;
+        	left: 2.75rem;
+        }
+
+        .sign {
+        	position: absolute;
+        	top:1.6rem;
+        	left: 2.75rem;
+        }
+
+        .describe {
+        	padding: 0rem .75rem .75rem .75rem;
+        	border-bottom-color: #f2f2f2;
+        	border-bottom-style: solid;
+        	border-bottom-width: 1px;
+        }
+
+        .content {
+        	padding: 0rem 0rem .75rem 0rem;
+        	border-bottom-color: #f2f2f2;
+        	border-bottom-style: solid;
+        	border-bottom-width: 1px;
+        }
+
+        .tit {
+        	padding: 0rem 2rem 0rem 2rem;
+        }
+
+        .me {
+        	padding: 0rem 2.5rem 0rem 2.5rem;
+        }
+
+        .right {
+        	float: right;
+        }
+
+        .clearfix:after {content:"";display: block;height: 0;clear:both;}
+        .clearfix {
+        	zoom:1;
+        }
+
+        .menu {}
+
+        .step {
+            margin: 0 .75rem ;
+            border-bottom-width: .05rem;
+            border-bottom-color: #f2f2f2;
+            border-bottom-style: solid;
+        }
+
+        .img_wenzi {
+        	text-align: center;
+        	margin-bottom: .75rem;
+        }
+
+        .tu {
+        	width: 15rem;
+        	height:12.5rem;
+        	padding: .75rem 0 0 0;
+        	/*margin:0 auto 0 auto; */
+        }
+
+        .ps{
+            margin:0rem 1.2rem
+        }
+
+        .att {
+            text-align: center;
+            /*padding:0rem 1.2rem;*/
+            padding:.75rem 0;
+            border-bottom-width: .05rem;
+            border-bottom-color: #f2f2f2;
+            border-bottom-style: solid;
+        }
+
+        .att_title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: .5rem;
+
+        }
+
+        .att_con {
+            font-size: .7rem;
+            text-align: left;
+        }
+
+        .sum {
+            padding:.75rem 0;
+            border-bottom-width: .05rem;
+            border-bottom-color: #f2f2f2;
+            border-bottom-style: solid;
+        }
+
+        .dis_in {
+            display: inline-block;
+            margin-right: 6rem;
+        }
+
+        .m_s {
+            background-image: url(../icon/buy.png);
+            background-size: 1.25rem;
+            background-repeat: no-repeat;
+            padding-left: 1.3rem;
+        }
+
+        .dir {
+            padding: 0 .5rem;
+
+        }
+
+        .zhizuo {
+            padding:.75rem 0;
+            border-bottom-width: .05rem;
+            border-bottom-color: #f2f2f2;
+            border-bottom-style: solid;
+        }
+
+        .zhizuo_title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: .75rem;
+        }
+
+        .yuyan_txt {
+            margin-top: .5rem;
+            height: 12rem;
+            /*overflow-y: scroll;*/
+            padding-bottom: 1rem;
+        }
+
+        .shou {
+            background-size: 0.85rem;
+            background-repeat: no-repeat;
+            padding-left: 1.5rem;
+            color: #ff6633;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+    	<div class="head">
+    		<img src="" alt="" class="main_img" id="fengmian">
+    		<div class="int">
+    			<p class="name font_size_16 font_color_333 p_cen" id="mingcheng"></p>
+    			<p class="num font_size_14 font_color_333 p_cen" id="pingfen"></p>
+    		</div>
+    		<div class="author">
+    			<img src="" alt="" class="touxiang" id="authorhead">
+    			<span class="au_name font_size_14">作者</span>
+    			<span class="sign font_size_14" id="author"></span>
+    		</div>
+    	</div>
+    	<div class="step">
+    		<div class="describe">
+    			<span class="de font_size_14 ">菜谱描述：</span>
+    			<p class="de font_size_12" id="caipumiaoshu"></p>
+    		</div>
+    		<div class="meterial">
+    			<span class="tit font_size_14">材料：</span>
+    			<div class="content font_size_14 clearfix" id="cailiaoliebiao">
+    				<!-- <p class="me">
+    					<span class="left font_size_14">食材：鲢鱼头</span>
+    					<span class="right font_size_14">用量：1个</span>
+    				</p>
+    				<p class="me">
+    					<span class="left font_size_14">食材：茶油</span>
+    					<span class="right font_size_14">用量：适量</span>
+    				</p>
+    				<p class="me">
+    					<span class="left font_size_14">食材：自制剁椒</span>
+    					<span class="right font_size_14">用量：适量</span>
+    				</p>
+    				<p class="me">
+    					<span class="left font_size_14">食材：葱蒜</span>
+    					<span class="right font_size_14">用量：适量</span>
+    				</p> -->
+    			</div>
+    		</div>
+    		<div class="menu" id="zhizuobuzhou">
+    			<span class="tit font_size_14">制作步骤：</span>
+    			<!-- <div class="img_wenzi">
+    				<img src="" alt="" class="tu" id="buzhou1">
+    				<p class="wen">1.准备食材。</p>
+    			</div>
+    			<div class="img_wenzi">
+    				<img src="" alt="" class="tu" id="buzhou2">
+    				<p class="wen">2.将鱼头内部的黑膜撕去，用水冲洗内腔。</p>
+    			</div>
+    			<div class="img_wenzi">
+    				<img src="" alt="" class="tu" id="buzhou3">
+    				<p class="wen">3.用刀剖开从鱼肚至鱼嘴，再用刀切一下，使鱼头能平整展开成一条直线。</p>
+    			</div>
+    			<div class="img_wenzi">
+    				<img src="" alt="" class="tu" id="buzhou4">
+    				<p class="wen">4.将鱼头用盐、料酒、胡椒粉搓揉腌渍半个小时左右去腥入味。</p>
+    			</div>
+    			<div class="img_wenzi">
+    				<img src="" alt="" class="tu" id="buzhou5">
+    				<p class="wen">5.将切好的姜片葱丝平铺在盘底。</p>
+    			</div>
+    			<div class="img_wenzi">
+                    <img src="" alt="" class="tu" id="buzhou6">
+                    <p class="wen">6.将腌制好的鱼头平铺在盘中。</p>
+                </div>
+                <div class="img_wenzi">
+                    <img src="" alt="" class="tu" id="buzhou7">
+                    <p class="wen">7.在鱼头上铺满剁椒。</p>
+                </div>
+                <div class="img_wenzi">
+                    <img src="" alt="" class="tu" id="buzhou8">
+                    <p class="wen">8.锅中加适量水，大火上气后，放入鱼头，蒸制。</p>
+                </div>
+                <div class="img_wenzi">
+                    <img src="" alt="" class="tu" id="buzhou9">
+                    <p class="wen">9.蒸约二十分钟，鱼眼鼓起突出即熟，关火后再焖二分钟。</p>
+                </div>
+                <div class="img_wenzi">
+                    <img src="" alt="" class="tu" id="buzhou10">
+                    <p class="wen">10.开盖后，将盘中蒸出的汤汁倒掉不用。</p>
+                </div>
+                <div class="img_wenzi">
+                    <img src="" alt="" class="tu" id="buzhou11">
+                    <p class="wen">11.在蒸鱼的过程中，将姜葱蒜切成末备用。</p>
+                </div>
+                <div class="img_wenzi">
+                    <img src="" alt="" class="tu" id="buzhou12">
+                    <p class="wen">12.锅中放适量茶油，烧热。</p>
+                </div>
+                <div class="img_wenzi">
+                    <img src="" alt="" class="tu" id="buzhou13">
+                    <p class="wen">13.将切好的葱姜蒜末铺在鱼头上，将烧好的油迅速均匀浇在鱼头上即可。</p>
+                </div>
+                <div class="img_wenzi">
+                    <img src="" alt="" class="tu" id="buzhou14">
+                    <p class="wen">14.吃时，将葱姜蒜碎与剁椒拌匀。</p>
+                </div> -->
+    		</div>
+    	</div>
+    	<div class="ps">
+            <div class="att">
+                <p class="att_title" id="zhuyishixiang">注意事项</p>
+                <!-- <span class="att_con">1、水要烧开后再放入鱼，鱼眼蒸突出，鱼头即熟了。</span> -->
+            </div>
+            <!-- <div class="sum">
+                <div class="dis_in font_size_16">当前菜谱金额</div>
+                <span class="m_s" id="jiage"></span>
+            </div> -->
+            <!-- <div class="comm">
+                <div class="comm_xiangq">
+                    <div class="yuyan">
+                        <p class="zhizuo_title">评价</p>
+                        <div class="yuyan_txt font_size_14" id="pingjianeirong"></div>
+                    </div>
+                </div>
+            </div>    -->
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/APP_INFO.js"></script>
+<script type="text/javascript" src="../script/aui-scroll.js"></script>
+<script type="text/javascript" src="../script/aui-pull-refresh.js"></script>
+<script type="text/javascript">
+    var _id;
+    var fengmian = document.getElementById('fengmian');
+    var authorhead = document.getElementById('authorhead');
+    var author = document.getElementById('author');
+    var mingcheng = document.getElementById('mingcheng');
+    var pingfen = document.getElementById('pingfen');
+    var caipumiaoshu = document.getElementById('caipumiaoshu');
+    var cailiaoliebiao = document.getElementById('cailiaoliebiao');
+    var zhizuobuzhou = document.getElementById('zhizuobuzhou');
+    var zhuyishixiang = document.getElementById('zhuyishixiang');
+    var jiage = document.getElementById('jiage');
+    var pingjianeirong = document.getElementById('pingjianeirong');
+    
+    apiready = function() {
+        _id = api.pageParam.name;
+        // alert(JSON.stringify(_id));
+        chaxun(_id);
+        // alert(cailiaonum);
+        // chaxun();
+        // var client = new Resource(APP_INFO.app_id, APP_INFO.app_key);
+        // var Model = client.Factory("caipu");
+        // Model.query(
+        // {
+        //     "filter":{
+        //         "fields":{"id": true,"img":true,"WenZi":true,"pri":true,"userID":true,"PingFen":true,"FengMian":true,"caipumiaoshu":true,"cailiao":true,"yongliang":true,"zhizuobuzhou":true,"zhuyishixiang":true,"pinglun":true,"cailiaonum":true,"buzhounum":true},
+        //          "include":"userIDPointer",//或者["id","make","model"]
+        //     order: "createdAt DESC"
+        //     }
+        // }
+        // , function(ret,err){
+        //     if(err){
+        //          alert(JSON.stringify(err));
+        //     }else{
+        //          // alert(JSON.stringify(ret));
+        //         var interation = doT.template( $('#articleTemp').html() );
+        //         //将数据显示到网页中
+        //         // alert(interation( ret ));
+        //     $( '#articleList-box' ).append(interation( ret ));
+        //     }
+        // })
+    };
+    function chaxun(id){
+        var client = new Resource(APP_INFO.app_id, APP_INFO.app_key);
+        var Model = client.Factory("caipu");
+        Model.get({"_id":id}, function(ret,err){
+            if(err){
+                // alert(JSON.stringify(err));
+                //处理错误 err
+                alert("数据库抽风了，没加载出来，请稍后重试！");
+            }else{
+                //处理数据 ret
+                // alert(JSON.stringify(ret));
+                var cailiaonum = ret.cailiaonum;
+                var buzhounum = ret.buzhounum; 
+                var zhuyinum = ret.zhuyinum;
+                var client = new Resource(APP_INFO.app_id, APP_INFO.app_key);
+                var Model = client.Factory("user");
+                Model.get({"_id":ret.userID}, function(ret,err){
+                    if(err){
+                        //处理错误 err
+                    }else{
+                        //处理数据 ret
+                        // alert(JSON.stringify(ret));
+                        authorhead.src = ret.headimage;
+                        author.innerHTML = ret.nickName;
+                        // alert(cailiaonum);
+                    }
+                })
+                fengmian.src = ret.FengMian;
+                caipumiaoshu.innerHTML = ret.caipumiaoshu;
+                mingcheng.innerHTML = ret.WenZi;
+                pingfen.innerHTML = '综合评分：'+ret.PingFen;
+                for (var a = 0 ; a < cailiaonum ; a ++){
+                    var html1 = cailiaoliebiao.innerHTML;
+                    cailiaoliebiao.innerHTML = html1 + '<p class="me"><span class="left font_size_14">'+ret.cailiao[a]+'</span><span class="right font_size_14">'+ret.yongliang[a]+'</span></p>'
+                }
+                for (var a = 0 ; a < buzhounum ; a ++){
+                    var html2 = zhizuobuzhou.innerHTML;
+                    zhizuobuzhou.innerHTML = html2 + '<div class="img_wenzi"><img src="'+ret.img[a]+'" alt="" class="tu" id="buzhou"><p class="wen">'+ret.zhizuobuzhou[a]+'</p></div>'
+                }
+                for (var a = 0 ; a < zhuyinum ; a ++){
+                    var html3 = zhuyishixiang.innerHTML;
+                    zhuyishixiang.innerHTML = html3 + '<span class="att_con">'+ret.zhuyishixiang[a]+'</span>'
+                }
+                // jiage.innerHTML = ret.pri;
+                // pingjianeirong.innerHTML = ret.pinglun;
+                // alert(JSON.stringify(ret));
+            }
+        })
+    }
+</script>
+
+</html>

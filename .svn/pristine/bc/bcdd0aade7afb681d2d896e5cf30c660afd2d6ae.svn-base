@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/aui-pull-refresh.css" />
+    <style>
+        body{
+         font-family: "微软雅黑";
+        }
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .clearfix:after {content:"";display:block;height:0px;clear:both;}
+        .clearfix {zoom:1;}
+        .neiRong1 {
+            width: 100%;
+            /*height: 145px;*/
+            padding-bottom: 40px;
+        }
+        .fengGeXian {
+            width: 100%;
+            height: 6px;
+            background-color: #efefef;
+        }
+        .content {
+            background-color: #fff;
+        }
+        .title {
+            color: #000;
+            padding-left: 15px;
+            padding-top: 15px;
+            padding-bottom: 6px;
+            font-size: 14px;
+        }
+        .picture {
+            display: inline;
+
+        }
+        .picture img {
+            width:105px;
+            height: 70px;
+            float: left;
+            padding-left: 12px;
+            display: block;
+
+        }
+        .otherInformation {
+            display: inline;
+        }
+        .miaoshu {
+            float: left;
+            padding-top: 6px;
+            padding-left: 14px;
+            font-size: 10px;
+            color: #cccccc;
+            font-family: "微软雅黑";
+        }
+        .content {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<section class="aui-refresh-content">
+    <div class="aui-content" >
+        <div id="content" class="content">
+            <div class="neiRong1" onclick=" changyangshi()">
+                <div class="title" name="测试dot">XCBD不D是个</div>
+                <div class="picture clearfix">
+                    <div class="p"><img class="weizhisrc" src="undefined"></div>
+                    <div class="p"><img class="weizhisrc" src="undefined"></div>
+                    <div class="p"><img class="weizhisrc" src="undefined"></div>
+                </div>
+                <div class="otherInformation">
+                    <div class="author miaoshu">jhsst</div>
+                    <div class="ReadNum miaoshu">阅读</div>
+                    <div class="PingLun miaoshu">99评论</div>
+                </div>
+            </div>
+            <div class="fengGeXian"></div>
+        </div>
+    </div>
+</section>
+
+</body>
+<!-- 模板 -->
+    <script id="articleTemp" type="text/x-dot-template">
+        {{~it:value:index}}
+            <div class="neiRong1" onclick="copyText('{{=value.id}}')">
+                <div class="title" name="{{=value.id}}">{{=value.title}}</div>
+                <div class="picture clearfix">
+                    <div class="p"><img src="{{=value.imgarry[0]}}"></div>
+                    <div class="p"><img src="{{=value.imgarry[1]}}"></div>
+                    <div class="p"><img src="{{=value.imgarry[2]}}"></div>
+                </div>
+                <div class="otherInformation">
+                    <div class="author miaoshu">{{=value.author.nickName}}</div>
+                    <div class="ReadNum miaoshu">{{=value.readNum}}阅读</div>
+                    <div class="PingLun miaoshu">99评论</div>
+                </div>
+            </div>
+            <div class="fengGeXian"></div>
+        {{~}}
+    </script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-pull-refresh.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/aui-scroll.js"></script>
+<script type="text/javascript">
+var pullRefresh;
+var  keyword;
+
+apiready = function(){
+   keyword=api.pageParam.name;
+    // alert(keyword);
+    if (keyword=='null') { 
+        //无key下拉查询
+        queryArticleListWithoutKey();
+        //无key上拉查询
+        queryArticleList2();
+    }else{
+        //有key下拉查询
+       queryArticleList(keyword); 
+       //有key上拉查询
+       queryArticleList2WithKey(keyword);
+    }
+    pullWithoutKey();
+    pull(keyword);
+    //上拉加载
+    // queryArticleList2();
+    pullAdd();
+    pullAddWithKey(keyword);
+   
+    
+};
+function copyText(id){
+    api.openWin({
+    name: 'xiangQing',
+    url: '../html/xiangQing.html',
+    pageParam: {
+        id: id
+         }
+    });
+}
+//有关键字下拉查询
+var tiao=0;
+function queryArticleList(keyword){
+    var client = new Resource("A6077910409729", "4ED601CF-94BA-9C80-2CB8-F4361A840A58");
+    var Model = client.Factory("article");
+    Model.query(
+    {
+        "filter":{
+            "fields":{"id": true, "title": true, "content": true,"readNum":true,"author":true,"imgarry":true,"createdAt":true},//或者["id","make","model"]
+            "include":"authorPointer",//关键代码。pointer类型的字段名+Pointer
+            "limit":5,
+            "skip":tiao,
+            "order": "createdAt DESC",
+             "where":{"keyWord": keyword }
+        }
+    }
+    , function(ret,err){
+        if(err){
+            // alert(JSON.stringify(err));
+
+        }else{
+            //处理数据 ret
+             // alert("关键字查询成功！");
+            // alert(JSON.stringify(ret));
+            var interation = doT.template( $('#articleTemp').html() );
+            //将数据显示到网页中
+            // alert(interation( ret ));
+            $( '#content' ).append(interation( ret ));
+            tiao=tiao+5;
+            pullRefresh.cancelLoading(); //刷新成功后调用此方法隐藏
+        }
+    })
+
+}
+//有关键字下拉
+function pull(keyword){
+        pullRefresh = new auiPullToRefresh({
+        container: document.querySelector('.aui-refresh-content'),
+        triggerDistance: 100
+    },function(ret){
+        if(ret.status=="success"){
+            setTimeout(function(){
+                alert(keyword);
+                queryArticleList(keyword);
+                // pullRefresh.cancelLoading(); //刷新成功后调用此方法隐藏
+                window.location.reload();
+            },300)
+        }
+    })
+}
+//无关键字下拉
+function pullWithoutKey(){
+        pullRefresh = new auiPullToRefresh({
+        container: document.querySelector('.aui-refresh-content'),
+        triggerDistance: 100
+    },function(ret){
+        if(ret.status=="success"){
+            setTimeout(function(){
+                queryArticleListWithoutKey();
+                // pullRefresh.cancelLoading(); //刷新成功后调用此方法隐藏
+                window.location.reload();
+            },300)
+        }
+    })
+}
+//无关键字下拉查询
+var time=0;
+function queryArticleListWithoutKey(){
+    var client = new Resource("A6077910409729", "4ED601CF-94BA-9C80-2CB8-F4361A840A58");
+    var Model = client.Factory("article");
+    
+    Model.query(
+    {
+        "filter":{
+            "fields":{"id": true, "title": true, "content": true,"readNum":true,"author":true,"imgarry":true,"createdAt":true},//或者["id","make","model"]
+            "include":"authorPointer",//关键代码。pointer类型的字段名+Pointer
+            "limit":5,
+            "skip":time,
+            "order": "createdAt DESC",
+             // "where":{"keyWord": keyword }
+        }
+    }
+    , function(ret,err){
+        if(err){
+            // alert(JSON.stringify(err));
+
+        }else{
+            //处理数据 ret
+            // alert("无关键字查询成功！");
+            alert(JSON.stringify(ret));
+            var interation = doT.template( $('#articleTemp').html() );
+            time=time+5;
+            //将数据显示到网页中
+            alert(interation( ret ));
+            $( '#content' ).append(interation( ret ));
+            changyangshi();
+            pullRefresh.cancelLoading(); //刷新成功后调用此方法隐藏
+        }
+    })
+
+}
+
+//下面的用于无条件上拉加载
+    var skipNumNoKey=5;
+    var limitNumNoKey=5;
+    //无关键字上拉查询
+    function queryArticleList2(){
+        var client = new Resource("A6077910409729", "4ED601CF-94BA-9C80-2CB8-F4361A840A58");
+        var Model = client.Factory("article");
+        Model.query({
+            filter:{
+                "fields":{"id": true, "title": true, "content": true,"readNum":true,"author":true,"imgarry":true,"createdAt":true},
+                "include":"authorPointer",
+                limit:limitNumNoKey,
+                skip:skipNumNoKey,
+                "order": "createdAt DESC", 
+            }
+        }, function(ret,err){
+            if(err){
+                //处理错误 err
+            }else{
+                //处理数据 ret
+                // alert("上拉无关键字查询成功");
+                console.log(JSON.stringify(ret));
+                var interation = doT.template( $('#articleTemp').html() );
+                //将数据显示到网页中
+                $( '#content' ).append(interation( ret ));
+                changyangshi();
+                skipNumNoKey=skipNumNoKey+limitNumNoKey;
+                
+                tag=true;
+            }
+        })
+    }
+    /*
+     * 查询时，值为false
+     * 非查询时，值为true
+     */
+    var tag=true;
+    //无关键字上拉
+    function pullAdd(){
+        var scroll = new auiScroll({
+            listen:true, //是否监听滚动高度，开启后将实时返回滚动高度
+            distance:20 //判断到达底部的距离，isToBottom为true
+        },function(ret){
+        //  console.log(JSON.stringify(ret))
+           if(ret.isToBottom==true && tag){
+                tag=false;
+                queryArticleList2();
+           }
+        });
+    }
+
+
+//有条件上拉查询
+
+    var skipNum=5;
+    var limitNum=5;
+    //有关键字上拉查询
+    function queryArticleList2WithKey(keyword){   
+        var client = new Resource("A6077910409729", "4ED601CF-94BA-9C80-2CB8-F4361A840A58");
+        var Model = client.Factory("article");
+        Model.query({
+            filter:{
+                "fields":{"id": true, "title": true, "content": true,"readNum":true,"author":true,"imgarry":true,"createdAt":true},
+                "include":"authorPointer",
+                "limit":limitNum,
+                "skip":skipNum,
+                "order": "createdAt DESC", 
+                "where":{"keyWord": keyword }
+            }
+        }, function(ret,err){
+            if(err){
+                //处理错误 err
+            }else{
+                //处理数据 ret
+                // alert("上拉有关键字查询成功");
+                console.log(JSON.stringify(ret));
+                var interation = doT.template( $('#articleTemp').html() );
+                //将数据显示到网页中
+                $( '#content' ).append(interation( ret ));
+                
+                skipNum=skipNum+limitNum;
+                
+                tag=true;
+            }
+        })
+    }
+    /*
+     * 查询时，值为false
+     * 非查询时，值为true
+     */
+    var tag=true;
+    //无关键字上拉
+    function pullAddWithKey(keyword){
+        var scroll = new auiScroll({
+            listen:true, //是否监听滚动高度，开启后将实时返回滚动高度
+            distance:20 //判断到达底部的距离，isToBottom为true
+        },function(ret){
+        //  console.log(JSON.stringify(ret))
+           if(ret.isToBottom==true && tag){
+                tag=false;
+                queryArticleList2WithKey(keyword);
+           }
+        });
+    }
+
+function changyangshi(){
+    var divset = $( '.weizhisrc' );
+        var g=divset[1].src;
+        var c= g.substring(g.length-9,g.length);
+        alert(c);
+
+
+    for (var i = 0; i<divset.length;i++) {
+         alert("进入循环");
+         var y=divset[i].src;
+         if (y.substring(y.length-9,y.length)=="undefined") {
+            alert("进入判断环节了");
+            var x=$( '.picture img' );
+
+            divset[i].style.display="none";
+        }    
+    };
+}
+
+
+
+</script>
+</html>

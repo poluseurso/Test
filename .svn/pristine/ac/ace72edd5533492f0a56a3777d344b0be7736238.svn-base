@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+        body{
+            font-family: "微软雅黑"; 
+        }
+        * {
+        	margin: 0px;
+        	padding: 0px;
+        }
+        .clearfix:after {content:"";display:block;height:0px;clear:both;}
+        .clearfix {zoom:1;}
+        .neiRong1 {
+            width: 100%;
+            /*height: 145px;*/
+            padding-bottom: 40px;
+        }
+        .fengGeXian {
+            width: 100%;
+            height: 6px;
+            background-color: #efefef;
+        }
+        .content {
+            background-color: #fff;
+        }
+        .title {
+            color: #000;
+            padding-left: 15px;
+            padding-top: 15px;
+            padding-bottom: 6px;
+            font-size: 14px;
+        }
+        .yingcangdeneirong {
+            width: 70%;
+            padding-left: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: none;
+        }
+        .yingcangdeneirong111 {
+            width: 70%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: block;
+        }
+        .picture {
+            display: inline;
+
+        }
+        .weizhisrc {
+            width:105px;
+            height: 70px;
+            float: left;
+            padding-left: 12px;
+            display: block;
+
+        }
+        .otherInformation {
+            display: inline;
+        }
+        .miaoshu {
+            float: left;
+            padding-top: 6px;
+            padding-left: 14px;
+            font-size: 10px;
+            color: #cccccc;
+            font-family: "微软雅黑";
+        }
+    /*    .content {
+            background: #fff;
+        }*/
+        .youqingtishi {
+            margin:0px auto;
+            color: #ccc;
+            padding-top: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="tiShi" id="tiShi">
+        <!-- <div class="youqingtishi">没有相关信息，请换个关键词查询吧</div> -->
+    </div> 
+</body>
+<script id="articleTemp" type="text/x-dot-template">
+      {{~it:value:index}}
+            <div class="neiRong1" onclick="copyText('{{=value.id}}')">
+                <div class="title" name="{{=value.id}}">{{=value.title}}</div>
+                <div class="yingcangdeneirong">{{=value.content.substr(0, 10)}}...</div>
+                <div class="picture clearfix">
+                    <div class="p"><img class="weizhisrc" src="{{=value.imgarry[0]}}"></div>
+                    <div class="p"><img class="weizhisrc" src="{{=value.imgarry[1]}}"></div>
+                    <div class="p"><img class="weizhisrc" src="{{=value.imgarry[2]}}"></div>
+                </div>
+                <div class="otherInformation">
+                    <div class="author miaoshu">{{=value.author.nickName}}</div>
+                    <div class="ReadNum miaoshu">{{=value.readNum}}阅读</div>
+                    <div class="PingLun miaoshu">99评论</div>
+                </div>
+            </div>
+            <div class="fengGeXian"></div>
+        {{~}}
+</script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-pull-refresh.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/aui-scroll.js"></script>
+<script type="text/javascript">
+    var jieshouRet;
+    apiready = function(){
+        jieshouRet=api.pageParam.name;
+        // alert(JSON.stringify( jieshouRet ));
+            var interation = doT.template( $('#articleTemp').html() );
+            // alert(interation( jieshouRet ));
+            $( '#tiShi' ).html(interation( jieshouRet ));
+          
+            if (jieshouRet=='') {
+               var x='<div class="youqingtishi">没有相关信息，请换个关键词查询吧</div>';
+               $( '#tiShi' ).html(x);
+            }
+            changyangshi();
+    };
+function copyText(id){
+    api.openWin({
+    name: 'xiangQing',
+    url: '../html/xiangQing.html',
+    pageParam: {
+        id: id
+         }
+    });
+}
+function changyangshi(){
+    var divset = $( '.weizhisrc' );   
+    var z=2;
+    for (var i = 2; i<divset.length;i++) {     
+        z++;
+        var tu1=divset[i-2].src;        
+        var tu2=divset[i-1].src;       
+        var tu3=divset[i].src;
+        if (z==3){
+            if(tu1.substring(tu1.length-9,tu1.length)=="undefined")
+                 {
+                    divset[i-2].style.display="none";
+                    divset[i-1].style.display="none";
+                    divset[i].style.display="none"; 
+                    var jiedianFuQin=divset[i-2].parentNode.parentNode;    
+                    var xiongdi=$api.prev(jiedianFuQin);
+                    xiongdi.style.display="block"; 
+
+                }
+            if(tu1.substring(tu1.length-9,tu1.length)!="undefined"&&tu2.substring(tu2.length-9,tu2.length)=="undefined"&&tu3.substring(tu3.length-9,tu3.length)=="undefined")
+                 {
+                    divset[i-2].style.display="block";
+                    divset[i-1].style.display="none";
+                    divset[i].style.display="none";
+                    divset[i-2].style.width=300+"px";
+                    divset[i-2].style.height=200+"px";
+                }
+            if(tu1.substring(tu1.length-9,tu1.length)!="undefined"&&tu2.substring(tu2.length-9,tu2.length)!="undefined"&&tu3.substring(tu3.length-9,tu3.length)=="undefined")
+                 {
+                    divset[i-2].style.display="block";
+                    divset[i-1].style.display="block";
+                    divset[i].style.display="none";
+                    divset[i-2].style.width=150+"px";
+                    divset[i-2].style.height=90+"px";
+                    divset[i-1].style.width=150+"px";
+                    divset[i-1].style.height=90+"px";
+                }
+            z=0;
+        }    
+    };
+}
+</script>
+</html>

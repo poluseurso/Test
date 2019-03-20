@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>shiYuanMain</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+    .content {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        font-family: 微软雅黑;
+    }
+    
+    .me {
+        width: 100%;
+        height: 80px;
+        position: relative;
+    }
+
+    .img_border {
+        width: 48px;
+        height: 48px;
+        border-radius:50%;
+        border: 1px solid #ccc;
+        margin: 0 auto; 
+        margin-top: 10px;
+    }
+    .img_border img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    }
+
+    .me p {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+        text-align: center;
+        color: #ccc;
+    }
+
+    .cut_line {
+        width: 100%;
+        height: 10px;
+        background: #e2e2e2;
+    }
+
+    .article_box {
+        width: 100%;
+        height: 130px;
+        background: #fff;
+        position: relative;
+    }
+
+    .article_sbox_left {
+        padding-top: 15px;
+        width: 95;
+        height: 60px;
+        position: absolute;
+        left: 15px;
+    }
+
+    .article_sbox_center {
+        width: 95px;
+        height: 60px;
+        margin: 0px auto;
+        padding-top: 15px;
+    }
+
+    .article_sbox_right {
+        width: 95px;
+        height: 60px;
+        position:absolute;
+        right: 15px;
+        top:15px;
+    }
+    
+    .article_box .img_left {
+        width: 95px;
+        height: 60px;
+        border-radius: 10px;
+    }
+    .article_box img {
+        width: 95px;
+        height: 60px;
+        border-radius: 10px;
+    }
+
+    .article_box .img_right {
+        width: 95px;
+        height: 60px;
+        border-radius: 10px;
+    }
+
+    .describ_word {
+        width: 240px;
+        height: 35px;
+        line-height: 35px;
+        color: #ff6633;
+        font-size: 14px;
+        padding-left: 15px;
+    }
+
+    .author {
+        width: 80px;
+        height: 22px;
+        line-height: 22px;
+        color: #ccc;
+        font-size: 12px;
+        position: absolute;
+        bottom: 5px;
+        left: 15px;
+    }
+
+    .belong {
+        width: 70px;
+        height: 22px;
+        line-height: 22px;
+        color: #ccc;
+        font-size: 12px;
+        position: absolute;
+        bottom: 5px;
+        right: 15px;
+    }
+    </style>
+</head>
+<body>
+    <div class="cotent">
+        <div class="me">
+            <div class="img_border">
+                <img src="../image/touxiang.jpg">
+            </div>
+            <p>大嘴吃天下</p>
+        </div>
+        <div class="cut_line"></div>
+        <div class="article_box">
+            <div class="article_sbox_left">
+                <img src="../image/meat.jpg" class="img_left">
+            </div>
+            <div class="article_sbox_center">
+                <img src="../image/meat1.jpg">
+            </div>
+            <div class="article_sbox_right">
+                <img src="../image/meat2.jpg" class="img_right">
+            </div>
+            <p class="describ_word">
+                如何做出一款百吃不腻的青椒炒肉
+            </p>
+            <p class="author">
+                @大嘴吃天下
+            </p>
+            <p class="belong">类别 ：晚餐</p>
+        </div>
+        <div class="cut_line"></div>
+        <div class="article_box">
+            <div class="article_sbox_left">
+                <img src="../image/meat.jpg" class="img_left">
+            </div>
+            <div class="article_sbox_center">
+                <img src="../image/meat1.jpg">
+            </div>
+            <div class="article_sbox_right">
+                <img src="../image/meat2.jpg" class="img_right">
+            </div>
+            <p class="describ_word">
+                如何做出一款百吃不腻的青椒炒肉
+            </p>
+            <p class="author">
+                @大嘴吃天下
+            </p>
+            <p class="belong">类别 ：晚餐</p>
+        </div>
+        <div class="cut_line"></div>
+        <div class="article_box">
+            <div class="article_sbox_left">
+                <img src="../image/meat.jpg" class="img_left">
+            </div>
+            <div class="article_sbox_center">
+                <img src="../image/meat1.jpg">
+            </div>
+            <div class="article_sbox_right">
+                <img src="../image/meat2.jpg" class="img_right">
+            </div>
+            <p class="describ_word">
+                如何做出一款百吃不腻的青椒炒肉
+            </p>
+            <p class="author">
+                @大嘴吃天下
+            </p>
+            <p class="belong">类别 ：晚餐</p>
+        </div>
+        <div class="cut_line"></div>
+        <div class="article_box">
+            <div class="article_sbox_left">
+                <img src="../image/meat.jpg" class="img_left">
+            </div>
+            <div class="article_sbox_center">
+                <img src="../image/meat1.jpg">
+            </div>
+            <div class="article_sbox_right">
+                <img src="../image/meat2.jpg" class="img_right">
+            </div>
+            <p class="describ_word">
+                如何做出一款百吃不腻的青椒炒肉
+            </p>
+            <p class="author">
+                @大嘴吃天下
+            </p>
+            <p class="belong">类别 ：晚餐</p>
+        </div>
+        <div class="cut_line"></div>
+        <div class="article_box">
+            <div class="article_sbox_left">
+                <img src="../image/meat.jpg" class="img_left">
+            </div>
+            <div class="article_sbox_center">
+                <img src="../image/meat1.jpg">
+            </div>
+            <div class="article_sbox_right">
+                <img src="../image/meat2.jpg" class="img_right">
+            </div>
+            <p class="describ_word">
+                如何做出一款百吃不腻的青椒炒肉
+            </p>
+            <p class="author">
+                @大嘴吃天下
+            </p>
+            <p class="belong">类别 ：晚餐</p>
+        </div>
+        <div class="cut_line"></div>
+        <div class="article_box">
+            <div class="article_sbox_left">
+                <img src="../image/meat.jpg" class="img_left">
+            </div>
+            <div class="article_sbox_center">
+                <img src="../image/meat1.jpg">
+            </div>
+            <div class="article_sbox_right">
+                <img src="../image/meat2.jpg" class="img_right">
+            </div>
+            <p class="describ_word">
+                如何做出一款百吃不腻的青椒炒肉
+            </p>
+            <p class="author">
+                @大嘴吃天下
+            </p>
+            <p class="belong">类别 ：晚餐</p>
+        </div>
+    </div>
+    
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        };
+</script>
+</html>

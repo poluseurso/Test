@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+            font-family: "微软雅黑"; 
+        }
+
+        .fengGeXian {
+          width: 100%;
+          height: 1px;
+          background-color: #efefef;
+        }
+
+        .DafengGeXian {
+          width: 100%;
+          height: 3px;
+          background-color: #efefef;
+        }
+
+        * {
+          margin: 0px;
+          padding: 0px;
+        }
+
+        .top {
+          width: 100%;
+          height: 121px;
+          background-color: #ff6633;
+          position: relative;
+        }
+
+        .drow img {
+          width: 80px;
+          height: 80px;
+          border-radius: 80px;
+          position: absolute;
+          bottom:15px; 
+          left:15px;
+        }
+
+        .name {
+          position: absolute;
+          bottom:65px; 
+          left:100px;
+          color: #FFF;
+          font-size: 18px;
+        }
+
+        .zan {
+          position: absolute;
+          bottom:15px; 
+          left:100px;
+          color: #FFF;
+          font-size: 14px;
+        }
+
+        .fensi {
+          position: absolute;
+          bottom:15px; 
+          left:70%;
+          color: #FFF;
+          font-size: 14px;
+        }
+        
+        .content {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        font-family: 微软雅黑;
+        }
+
+        .message_box {
+            width: 100%;
+            height: 55px;
+            position: relative;
+        }
+    
+        .cut_line {
+            width: 100%;
+            height: 10px;
+            background: #e2e2e2;
+        }
+        
+        .message_box p {
+            width: 24px;
+            padding-left: 15px;
+            font-size: 12px;
+            height: 55px;
+            line-height: 55px;
+            color: #333;
+        }
+
+       .message_box input {
+            width: 80%;
+            height: 35px;
+            color: #333;
+            line-height: 35px;
+            font-size: 12px;
+            position: absolute;
+            left: 55px;
+            top: 10px;
+            border: none;
+            border-bottom: 1px solid #e2e2e2;
+       } 
+
+
+        
+    </style>
+</head>
+<body>
+  <div class="contnt">
+        <div class="top">
+            <div class="drow">
+              <img src="../image/touxiang.jpg" id="avatar" onclick="choose_avatar()">
+            </div>
+            <div class="name" id="nick_name">大嘴吃天下</div>
+            <div class="zan" id="zan">获赞：6666</div>
+            <div class="fensi" id="fans">粉丝：8888</div>
+        </div>
+        <div class="message_box">
+             <p>昵称</p>
+             <input type="text" name="sine" value=""  id="nickName">
+        </div>
+        <div class="message_box">
+             <p>签名</p>
+             <input type="text" name="sine" value="" placeholder="啥都没写怎么不懒死你" id="signature">
+        </div>
+        <div class="cut_line"></div>
+        <div class="message_box">
+             <p>城市</p>
+             <input type="text" name="sine" value="雾都" placeholder="啥都没写怎么不懒死你" id="city">
+        </div>
+        <div class="message_box">
+             <p>星座</p>
+             <input type="text" name="sine" value="摩羯" placeholder="啥都没写怎么不懒死你" id="xingzuo">
+        </div>
+        <div class="cut_line"></div>
+        <div class="message_box">
+             <p>爱好</p>
+             <input type="text" name="sine" value="烹饪，音乐" placeholder="啥都没写怎么不懒死你" id="likes">
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="api.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/APP_INFO.js"></script>
+<script type="text/javascript">
+        var avatar;
+        var nick_name ;
+        var nickName;
+        var zan ;
+        var fans ;
+        var signature ;
+        var city;
+        var xingzuo ;
+        var likes;
+        var user_info = $api.getStorage('user_info');
+        var have_choose = false;
+    apiready = function(){
+        avatar = $("#avatar");
+        nick_name = $("#nick_name");
+        nickName = $("#nickName");
+        zan = $("#zan");
+        fans = $("#fans");
+        signature = $("#signature");
+        city = $("#city");
+        xingzuo = $("#xingzuo");
+        likes = $("#likes");
+        avatar.attr("src",user_info.headimage);
+        nick_name.text(user_info.nickName);
+        nickName.val(user_info.nickName)
+        signature.val(user_info.signature);
+        zan.val(user_info.likeNum);
+        fans.val(user_info.nick_name);
+        city.val(user_info.city);
+        xingzuo.val(user_info.star);
+        likes.val(user_info.likes);
+        api.addEventListener({
+        name: 'sure_change'
+        }, function(ret, err) {
+            //alert(JSON.stringify(ret));
+            if(ret){
+                // alert(ret.value.cid);//注意封装在ret.value中
+                //要实现的代码
+                change_message();
+
+            }
+        });
+    };
+    function choose_avatar(){
+        api.actionSheet({
+        title: '更换头像',
+        cancelTitle: '取消',
+        buttons: ['拍照', '从相册中选择']
+        }, function(ret, err) {
+                var index = ret.buttonIndex;
+                if(index == 1 ){
+                    img_photo();
+                };
+                if(index == 2){
+                    img_pic();
+                }
+            });
+    }
+
+    function img_photo(){
+        api.getPicture({
+        sourceType: 'camera',
+        encodingType: 'jpg',
+        mediaValue: 'pic',
+        destinationType: 'url',
+        allowEdit: true,
+        quality: 50,
+        targetWidth: 100,
+        targetHeight: 100,
+        saveToPhotoAlbum: false
+        }, function(ret, err) {
+            if (ret) {
+                // alert(JSON.stringify(ret));
+                // alert(ret.data);
+                $("#avatar").attr("src",ret.data);
+                have_choose = true;
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+
+    function img_pic(){
+        api.getPicture({
+        sourceType: 'album',
+        encodingType: 'jpg',
+        mediaValue: 'pic',
+        destinationType: 'url',
+        allowEdit: true,
+        quality: 50,
+        targetWidth: 100,
+        targetHeight: 100,
+        saveToPhotoAlbum: false
+        }, function(ret, err) {
+            if (ret) {
+                // alert(JSON.stringify(ret));
+                // alert(ret.data);
+                $("#avatar").attr("src",ret.data);
+                have_choose = true;
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });   
+    }
+
+    function change_message(){
+        var sine_c = signature.val();
+        var nick_name_c = nickName.val();
+        var city_c = city.val();
+        var xingzuo_c = xingzuo.val();
+        var likes_c = likes.val();
+        var avatar_c ; 
+        if(have_choose){
+            var client = new Resource(APP_INFO.app_id, APP_INFO.app_key);
+            var File = client.Factory("file");
+            File.save({
+            file:{
+                isFile:true,path:avatar.attr("src"),
+                values:{
+                    filename:""+user_info.id+"ava.png"
+                }
+        }},function(data,err){
+            // alert("file:\t"+JSON.stringify(data));
+            if(data){
+                avatar_c = data.url;
+                var client = new Resource(APP_INFO.app_id, APP_INFO.app_key);
+                var Model = client.Factory("user");
+                Model.save({
+                        "_id":user_info.id
+                    },{
+                        "signature":sine_c,
+                        "nickName":nick_name_c,
+                        "city":city_c,
+                        "star":xingzuo_c,
+                        "headimage":avatar_c,
+                        "likes":likes_c
+                        }, function(ret,err){
+                    if(err){
+                        //处理错误 err
+                        alert("信息修失败！");
+                    }else{
+                        //处理数据 ret
+                        alert("信息修改成功！");
+                        $api.setStorage('user_info', ret);
+                        // alert(JSON.stringify(ret))
+                        api.closeWin({
+                          });
+                          api.openWin({
+                              name: 'Shiyuan',
+                              url: '../html/Shiyuan.html',
+                              pageParam: {
+                                  name: 'test'
+                              }
+                          });
+                    }
+                })
+                // alert("头像上传成功")
+            }else{
+                // alert("头像上传失败")
+            }
+            
+            // alert("file:\t"+JSON.stringify(err));
+        })
+        }else{
+            avatar_c = avatar.attr("src");
+            var client = new Resource(APP_INFO.app_id, APP_INFO.app_key);
+            var Model = client.Factory("user");
+            Model.save({
+                    "_id":user_info.id
+                },{
+                    "signature":sine_c,
+                    "nickName":nick_name_c,
+                    "city":city_c,
+                    "star":xingzuo_c,
+                    "headimage":avatar_c,
+                    "likes":likes_c
+                    }, function(ret,err){
+                if(err){
+                    //处理错误 err
+                    alert("信息修失败！");
+                }else{
+                    //处理数据 ret
+                    alert("信息修改成功！");
+                    $api.setStorage('user_info', ret);
+                    // alert(JSON.stringify(ret))
+                    api.closeWin({
+                      });
+                      api.openWin({
+                          name: 'Shiyuan',
+                          url: '../html/Shiyuan.html',
+                          pageParam: {
+                              name: 'test'
+                          }
+                      });
+                }
+            })
+        }
+        
+        
+    }
+</script>
+</html>

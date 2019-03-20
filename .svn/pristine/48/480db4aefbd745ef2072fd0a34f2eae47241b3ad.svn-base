@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+		*{
+			padding: 0rem;
+			margin: 0rem;
+			list-style: none;
+			text-decoration: none;
+		}
+
+        .top {
+			width: 100%;
+			height: 69px;
+		}
+
+		#first_title {
+			font-size: 18px;
+			font-weight: 700;
+			text-align: center;
+			padding-top: 15px;
+		}
+
+		#title2 {
+			font-size: 14px;
+			text-align: center;
+		}
+
+		.down {
+			width: 50%;
+			height: 1px;
+			background: #ff6633;
+			margin: 0 auto;
+		}
+
+		.caipu_1 {
+			width: 42%;
+			height: 265px;
+			margin: 10px;
+			float: left;
+			position: relative;
+		}
+
+		#pdsrz {
+			width: 100%;
+			height: 164px;
+		}
+
+		#touxiang1 {
+			width: 33px;
+			height: 33px;
+			border-radius: 50%;
+			float: left;
+		}
+
+		#pdsrz_zuozhe {
+			font-size: 14px;
+			color: #ccc;
+			float: left;
+			line-height: 33px;
+			padding-left: 15px;
+		}
+
+		#pdsrz_miaoshu {
+			font-size: 14px;
+			float: left;
+		}
+
+		.caipu_2 {
+			width: 42%;
+			height: 265px;
+			margin: 10px;
+			float: right;
+			position: relative;
+		}
+
+		#tytws {
+			width: 100%;
+			height: 164px;
+		}
+
+		#touxiang2 {
+			width: 33px;
+			height: 33px;
+			border-radius: 50%;
+			float: left;
+		}
+
+		#tytws_zuozhe {
+			font-size: 14px;
+			color: #ccc;
+			float: left;
+			line-height: 33px;
+			padding-left: 15px;
+		}
+
+		#tytws_miaoshu {
+			font-size: 14px;
+			float: left;
+		}
+
+		.caipu_3 {
+			width: 42%;
+			height: 265px;
+			margin: 10px;
+			float: left;
+			position: relative;
+		}
+
+		#houdanshao {
+			width: 100%;
+			height: 164px;
+		}
+
+		#touxiang1 {
+			width: 33px;
+			height: 33px;
+			border-radius: 50%;
+			float: left;
+		}
+
+		#houdanshao_zuozhe {
+			font-size: 14px;
+			color: #ccc;
+			float: left;
+			line-height: 33px;
+			padding-left: 15px;
+		}
+
+		#houdanshao_miaoshu {
+			font-size: 14px;
+			float: left;
+		}
+
+		.caipu_4 {
+			width: 42%;
+			height: 265px;
+			margin: 10px;
+			float: right;
+			position: relative;
+		}
+
+		#hupidan {
+			width: 100%;
+			height: 164px;
+		}
+
+		#touxiang2 {
+			width: 33px;
+			height: 33px;
+			border-radius: 50%;
+			float: left;
+		}
+
+		#hupidan_zuozhe {
+			font-size: 14px;
+			color: #ccc;
+			float: left;
+			line-height: 33px;
+			padding-left: 15px;
+		}
+
+		#hupidan_miaoshu {
+			font-size: 14px;
+			float: left;
+		}
+    </style>
+</head>
+<body>
+    <div class="top">
+    	<p id="first_title">早餐·3月25日</p>
+    	<p id="title2">521个作品</p>
+    </div>
+    <div class="down"></div>
+    <div class="caipu_1">
+    	<img src="../image/pdsrz.jpg" alt="" id="pdsrz">
+    	<img src="../image/meinv.jpeg" alt="" id="touxiang1">
+    	<p id="pdsrz_zuozhe">吃、往死里吃</p>
+    	<p id="pdsrz_miaoshu">#早餐·2018年1月25日皮蛋瘦肉粥</p>
+    </div>
+    <div class="caipu_2">
+    	<img src="../image/tytws.jpg" alt="" id="tytws">
+    	<img src="../icon/old.png" alt="" id="touxiang2">
+    	<p id="tytws_zuozhe">塞、往死里塞</p>
+    	<p id="tytws_miaoshu">#早餐·2018年1月25日吞云吐雾司</p>
+    </div>
+    <div class="caipu_3">
+    	<img src="../image/houdanshao.jpg" alt="" id="houdanshao">
+    	<img src="../image/meinv.jpeg" alt="" id="touxiang1">
+    	<p id="houdanshao_zuozhe">吃、往死里吃</p>
+    	<p id="houdanshao_miaoshu">#早餐·2018年1月25日蟹柳厚蛋烧</p>
+    </div>
+    <div class="caipu_4">
+    	<img src="../image/hupidan.jpg" alt="" id="hupidan">
+    	<img src="../icon/old.png" alt="" id="touxiang2">
+    	<p id="hupidan_zuozhe">塞、往死里塞</p>
+    	<p id="hupidan_miaoshu">#早餐·2018年1月25日虎皮蛋</p>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        
+    };
+</script>
+</html>

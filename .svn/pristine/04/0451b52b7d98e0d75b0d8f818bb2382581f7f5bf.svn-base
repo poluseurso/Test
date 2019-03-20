@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+         font-family: "微软雅黑";
+         background-color: #FFF;
+        }
+        * {
+        	margin: 0px;
+        	padding: 0px;
+        }
+        .clearfix:after {content:"";display:block;height:0px;clear:both;}
+        .clearfix {zoom:1;}
+        .top_1 {
+        	background-color: #ff6633;
+        	height: 38px;
+        	width: 100%;
+        	padding-top: 7.5px;
+        }
+        .searchBox {
+        	width: 73%;
+        	height: 30px;
+        	margin-left: 15px;
+        	padding-left: 15px;
+        	background-color: #ffffff;
+        	border-radius: 15px;
+        	float: left;
+        }
+        .searchFontSize {
+        	font-size: 14;
+        	color:#ffffff;
+        	font-family: "微软雅黑";
+        	float: left;
+        	padding-top: 3px;
+        	padding-left: 15px;
+        }
+        .top_2 {
+        	width: 100%;
+        	height: 28px;
+        	border-bottom-width: 100%;
+        	/*border-bottom: 1px solid  #ccc;  */
+        	position: relative;
+        }
+        .choose {
+        	width: 100%;
+        	padding-top: 5px;
+        	background-color: #ffffff;
+        }
+        .top2_li {
+        	display: inline;
+        	padding-left: 4%;
+        	padding-right: 4%;
+        	font-size: 16px;
+        	color: #ff6633;
+        	font-family: "微软雅黑";
+        }
+        .bottomLine {
+         	border-bottom-width: 100%;
+        	border-bottom: 3px solid  #ff6633;
+        	position: absolute;
+        	width: 60px;
+        	height: 5px;
+        	top: 23px;
+        	/*left: 0px;*/
+        }
+        .foot {
+            width: 100%;
+            height:49px;
+            position: fixed;
+            bottom: 0px;
+            border-top: #f2f2f2 solid 1px;
+        }
+        .bottom1 {
+            float: left;
+            width: 25%;
+            height: 46px;
+            margin-top: 2px;
+            /*background-color: #234;*/
+        }
+        .bottom2 {
+            float: left;
+            width: 25%;
+            height: 46px;
+            margin-top: 2px;
+            /*background-color: #234;*/
+        }
+        .bottom3 {
+            float: left;
+            width: 25%;
+            height: 46px;
+            margin-top: 2px;
+            /*background-color: #234;*/
+        }
+        .bottom4 {
+            float: left;
+            width: 25%;
+            height: 46px;
+            margin-top: 2px;
+            /*background-color: #234;*/
+        }
+        .shise {
+            width: 25px;
+            height: 48px;
+            margin:0px auto;
+            font-size: 12px;
+            color: #ccc;
+        }
+        .shiyun {
+            width: 25px;
+            height: 48px;
+            margin:0px auto;
+            font-size: 12px;
+            color: #ccc;
+        }
+        .shiling {
+            width: 25px;
+            height: 48px;
+            margin:0px auto;
+            font-size: 12px;
+            color: #ff6633;
+        }
+        .shiyuan {
+            width: 25px;
+            height: 48px;
+            margin:0px auto;
+            font-size: 12px;
+            color: #ccc;
+        }
+        .shise .pic img {
+            width: 25px;
+            height: 25px;
+
+        }
+        .shiyun .pic img {
+            width: 25px;
+            height: 25px;
+
+        }
+        .shiling .pic img {
+            width: 25px;
+            height: 25px;
+
+        }
+        .shiyuan .pic img {
+            width: 25px;
+            height: 25px;
+
+        }
+
+    </style>
+</head>
+<body>
+	<div class="header" id="header">
+	    <div class="top_1">
+	    	<div class="searchBox" onclick="search()">
+
+            </div>
+	    	<div class="searchFontSize" onclick="search()">搜索</div>
+	    </div>
+	    <div class="top_2">
+	    	<ul class="choose" >
+	    		<li class="top2_li" id="tuiJian" onclick="doMove1()" style="border-bottom: 2px solid #ff6633;">推荐</li>
+	    		<li class="top2_li" id="shiLiao"  onclick="doMove2(word1)" style="border-bottom: 2px solid #fff;">食疗</li>
+	    		<li class="top2_li" id="jianFei"  onclick="doMove3(word2)" style="border-bottom: 2px solid #fff;">减肥</li>
+	    		<li class="top2_li" id="life"     onclick="doMove4(word3)" style="border-bottom: 2px solid #fff;">生活</li>
+	    		<li class="top2_li" id="zhongYi"  onclick="doMove5(word4)" style="border-bottom: 2px solid #fff;">中医</li>
+	    	</ul>
+	    	<!-- <div class="bottomLine" id="moveDiv" style="left: 0px;"></div> -->
+	    </div>
+	</div>
+    <div class="foot">
+        <div class="bottom1" onclick="openFoodWin(0)">
+            <div class="shise" >
+                <div class="pic"><img src="../icon/unfood.png"></div>
+                <div class="fonts">食色</div>
+            </div>
+        </div>
+        <div class="bottom2" onclick="openFoodWin(1)">
+            <div class="shiyun">
+                <div class="pic"><img src="../icon/uncooker.png"></div>
+                <div class="fonts">食韵</div>
+            </div>
+        </div>
+        <div class="bottom3">
+            <div class="shiling">
+                <div class="pic"><img src="../icon/old.png"></div>
+                <div class="fonts">食灵</div>
+            </div>
+        </div>
+        <div class="bottom4" onclick="openFoodWin(3)">
+            <div class="shiyuan">
+                <div class="pic"><img src="../icon/unbool.png"></div>
+                <div class="fonts">食源</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        pageTuiJian();
+        exitApp();
+    };
+
+    function exitApp(){
+        var n = 0;
+        var time1, time2;
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err){
+            if (n == 0) {
+                time1 = new Date().getTime();
+                n = 1;
+                api.toast({msg:'再按一次返回键退出'});
+            }else if(n==1){
+                time2 = new Date().getTime();
+                if (time2 - time1 < 2000) {
+                    api.closeWidget({
+                        id: api.appId,  //填写自己的id   
+                        retData: {name:'closeWidget'},
+                        silent:true
+                    });
+                }else{
+                    n=1;
+                    time1=time2;
+                    api.toast({msg:'再按一次返回键退出'});
+                }
+            }
+             
+        });
+}
+
+        function pageTuiJian(){
+            var header = $api.byId('header');
+            var headerH = $api.offset(header).h;
+            $api.fixStatusBar(headerH);
+            var main_height = api.winHeight-127;
+            api.openFrame({
+                name: 'shiLing-frame',
+                url: '../frame/shiLing-frame.html',
+                rect: {
+                    x: 0,
+                    y: headerH,
+                    w: 'auto',
+                    h: main_height
+                },
+                animation:{
+                    type:'none',
+                    duration:300
+                },
+                pageParam: {
+                    name: 'null'
+                },
+                bounces: false
+            });
+        }
+        var word1="食疗";
+        function pageShiLiao(word1){
+            var header = $api.byId('header');
+            var headerH = $api.offset(header).h;
+            $api.fixStatusBar(headerH);
+            var main_height = api.winHeight-127;
+            api.openFrame({
+                name: 'shiLing-frame',
+                url: '../frame/shiLing-frame.html',
+                rect: {
+                    x: 0,
+                    y: headerH,
+                    w: 'auto',
+                    h: main_height
+                },
+                animation:{
+                    type:'none',
+                    duration:300
+                },
+                pageParam: {
+                    name: word1
+                },
+                bounces: false
+            });
+
+        }
+         var word2="减肥";
+        function pageJianFei(word2){
+            var header = $api.byId('header');
+            var headerH = $api.offset(header).h;
+            $api.fixStatusBar(headerH);
+            var main_height = api.winHeight-127;
+            api.openFrame({
+                name: 'shiLing-frame',
+                url: '../frame/shiLing-frame.html',
+                rect: {
+                    x: 0,
+                    y: headerH,
+                    w: 'auto',
+                    h: main_height
+                },
+                animation:{
+                    type:'none',
+                    duration:300
+                },
+                pageParam: {
+                    name: word2
+                },
+                bounces: false
+            });
+
+        }
+         var word3="生活";
+        function pageLife(word3){
+            var header = $api.byId('header');
+            var headerH = $api.offset(header).h;
+            $api.fixStatusBar(headerH);
+            var main_height = api.winHeight-127;
+            api.openFrame({
+                name: 'shiLing-frame',
+                url: '../frame/shiLing-frame.html',
+                rect: {
+                    x: 0,
+                    y: headerH,
+                    w: 'auto',
+                    h: main_height
+                },
+                animation:{
+                    type:'none',
+                    duration:300
+                },
+                pageParam: {
+                    name: word3
+                },
+                bounces: false
+            });
+
+        }
+        var word4="中医";
+        function pageZhongYi(word4){
+            var header = $api.byId('header');
+            var headerH = $api.offset(header).h;
+            $api.fixStatusBar(headerH);
+            var main_height = api.winHeight-127;
+            api.openFrame({
+                name: 'shiLing-frame',
+                url: '../frame/shiLing-frame.html',
+                rect: {
+                    x: 0,
+                    y: headerH,
+                    w: 'auto',
+                    h: main_height
+                },
+                animation:{
+                    type:'none',
+                    duration:300
+                },
+                pageParam: {
+                    name: word4
+                },
+                bounces: false
+            });
+ 
+        }
+        function search(){
+            api.openWin({
+            name: 'souSuo',
+            url: './souSuo.html',
+            pageParam: {
+                name: 'test'
+                 }
+            });
+        }
+        function openFoodWin(index){
+          if(index==0){
+            api.openWin({
+                name: 'Shise',
+                url: 'Shise.html',
+                animation:{
+                  type:"none"
+                },
+                pageParam: {
+                    name: 'test'
+                }
+            });
+          }else if(index==1){
+            api.openWin({
+                name: 'Shiyun',
+                url: 'Shiyun.html',
+                animation:{
+                  type:"none"
+                },
+                pageParam: {
+                    name: 'test'
+                }
+            });
+          }else if(index==2){
+            api.openWin({
+                name: 'Shiling',
+                url: 'Shiling.html',
+                animation:{
+                  type:"none"
+                },
+                pageParam: {
+                    name: 'test'
+                }
+            });
+          }else if(index==3){
+            api.openWin({
+                name: 'Shiyuan',
+                url: 'Shiyuan.html',
+                animation:{
+                  type:"none"
+                },
+                pageParam: {
+                    name: 'test'
+                }
+            });
+          }
+        }
+        function doMove1() {
+            var _div1=document.getElementById("tuiJian");
+            var _div2=document.getElementById("shiLiao");
+            var _div3=document.getElementById("jianFei");
+            var _div4=document.getElementById("life");
+            var _div5=document.getElementById("zhongYi");
+            _div1.style.borderBottomColor="#ff6633";
+            _div2.style.borderBottomColor="#fff";
+            _div3.style.borderBottomColor="#fff";
+            _div4.style.borderBottomColor="#fff";
+            _div5.style.borderBottomColor="#fff";
+            closepage();
+            pageTuiJian();
+        }
+        function doMove2(word1) {
+            var _div1=document.getElementById("tuiJian");
+            var _div2=document.getElementById("shiLiao");
+            var _div3=document.getElementById("jianFei");
+            var _div4=document.getElementById("life");
+            var _div5=document.getElementById("zhongYi");
+            _div1.style.borderBottomColor="#fff";
+            _div2.style.borderBottomColor="#ff6633";
+            _div3.style.borderBottomColor="#fff";
+            _div4.style.borderBottomColor="#fff";
+            _div5.style.borderBottomColor="#fff";
+            closepage();
+            pageShiLiao(word1);
+        }
+
+        function doMove3(word2) {
+            var _div1=document.getElementById("tuiJian");
+            var _div2=document.getElementById("shiLiao");
+            var _div3=document.getElementById("jianFei");
+            var _div4=document.getElementById("life");
+            var _div5=document.getElementById("zhongYi");
+            _div1.style.borderBottomColor="#fff";
+            _div2.style.borderBottomColor="#fff";
+            _div3.style.borderBottomColor="#ff6633";
+            _div4.style.borderBottomColor="#fff";
+            _div5.style.borderBottomColor="#fff";
+            closepage();
+            pageJianFei(word2);
+        }
+        function doMove4(word3) {
+            var _div1=document.getElementById("tuiJian");
+            var _div2=document.getElementById("shiLiao");
+            var _div3=document.getElementById("jianFei");
+            var _div4=document.getElementById("life");
+            var _div5=document.getElementById("zhongYi");
+            _div1.style.borderBottomColor="#fff";
+            _div2.style.borderBottomColor="#fff";
+            _div3.style.borderBottomColor="#fff";
+            _div4.style.borderBottomColor="#ff6633";
+            _div5.style.borderBottomColor="#fff";
+            closepage();
+            pageLife(word3);
+
+        }
+        function doMove5(word4) {
+            var _div1=document.getElementById("tuiJian");
+            var _div2=document.getElementById("shiLiao");
+            var _div3=document.getElementById("jianFei");
+            var _div4=document.getElementById("life");
+            var _div5=document.getElementById("zhongYi");
+            _div1.style.borderBottomColor="#fff";
+            _div2.style.borderBottomColor="#fff";
+            _div3.style.borderBottomColor="#fff";
+            _div4.style.borderBottomColor="#fff";
+            _div5.style.borderBottomColor="#ff6633";
+            closepage();
+            pageZhongYi(word4);
+        }
+        function closepage(){
+                api.closeFrame({
+            name: 'shiLing-frame'
+        });
+    }
+</script>
+</html>

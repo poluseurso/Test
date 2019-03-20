@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>shiYuanMain</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+    .content {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        font-family: 微软雅黑;
+    }
+
+    .myMessage {
+        width: 100%;
+        height: 100px;
+        position: relative;
+    }
+
+    .imgBoxHead {
+        width:48px;
+        height:48px;
+        border: 1px solid #ccc;
+        border-radius:50%;
+        margin-left: 15px;
+        margin-top: 15px;
+        position: absolute;
+    }
+
+    .touXiang {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+    }
+
+    .nickName {
+        width: 80px;
+        height: 14px;
+        font-family: 微软雅黑;
+        font-size: 14px;
+        color: #333;
+        line-height:14px;
+        position: absolute;
+        top: 25px;
+        left: 73px;
+    }
+
+    .signature {
+        width: 200px;
+        height: 12px;
+        font-family: 微软雅黑;
+        font-size: 12px;
+        color: #ccc;
+        line-height: 12px;
+        position: absolute;
+        top: 49px;
+        left: 73px;
+    }
+
+    .imgTo {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        right: 15px;
+        top: 32px;
+    }
+
+    .cutLine {
+        width: 100%;
+        height: 10px;
+        background:#e2e2e2;
+    }
+
+    ul li {
+        width: 100%;
+        height: 55px;
+        position: relative;
+    }
+
+    ul li img {
+        width: 24px;
+        height: 24px;
+       position: absolute;
+        left: 15px;
+        top: 16px;
+    }
+
+    ul li p {
+        width:50px;
+        height: 12px;
+        font-size: 12px;
+        line-height: 12px;
+        color: #333;
+        position: absolute;
+        top: 22px;
+        left: 49px;
+    }
+    </style>
+</head>
+<body>
+    <div class="cotent">
+        <div class="myMessage"  onclick="to_message()">
+            <div class="imgBoxHead">
+                <img src="../image/touxiang.jpg" class="touXiang" id="avatar">
+            </div>
+            <p class="nickName" id="nick_name">大嘴吃天下</p>
+            <p class="signature" id="signature">啥都没写怎么不懒死你</p>
+            <img src="../icon/gogogo.png" class="imgTo">
+        </div>
+        <div class="cutLine"></div>
+        <ul>
+            <li onclick="to_intergral()">
+                <img src="../icon/pig.png">
+                <p>我的积分</p>
+            </li>
+            <li onclick="to_article()">
+                <img src="../icon/txt.png">
+                <p>我的文章</p>
+            </li>
+            <li onclick="to_care()">
+                <img src="../icon/like.png">
+                <p>我的关注</p>
+            </li>
+            <!-- <li onclick="to_browse()">
+                <img src="../icon/look_list.png">
+                <p>浏览记录</p>
+            </li> -->
+            <li onclick="to_shopping()">
+                <img src="../icon/shop_list.png">
+                <p>购买记录</p>
+            </li>
+            <li onclick="to_about()">
+                <img src="../icon/about.png">
+                <p>关于食域</p>
+            </li>
+        </ul>
+        <div class="cutLine"></div>
+        <ul>
+            <li onclick="clear">
+                <img src="../icon/quit.png">
+                <p>退出登录</p>
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/APP_INFO.js"></script>
+<script type="text/javascript">
+    var avatar = $("#avatar");
+    var nick_name = $("#nick_name");
+    var signature = $("#signature");
+    apiready = function() {
+        //在程序开始运行时，从数据库中获取用户的头像昵称和签名
+        reload_user_message();
+        api.addEventListener({
+        name: 'sure_change'
+        }, function(ret, err) {
+            //alert(JSON.stringify(ret));
+            if(ret){
+                alert(ret.value.cid);//注意封装在ret.value中
+                //要实现的代码
+                reload_user_message();
+            }
+        });
+
+    };
+
+        function reload_user_message(){
+            var client = new Resource(APP_INFO.app_id,APP_INFO.app_key);
+            var Model = client.Factory("user");
+            Model.get({
+                "_id":"5b00e451ad5cebbd2f8935a7"
+                }, function(ret,err){
+                if(err){
+                    //处理错误 err
+                    alert("查询失败"+JSON.stringify(err));
+                }else{
+                    // alert("查询成功"+JSON.stringify(ret));
+                    avatar.attr("src",ret.headimage.url);
+                    nick_name.text(ret.nickName);
+                    signature.html(ret.signature);
+                    //处理数据 ret
+                }
+            })
+        }
+        var to_message = function(){
+            api.openWin({
+                name: 'Shiyuan_messaget',
+                url: '../html/Shiyuan_messaget.html',
+                pageParam: {
+                    name: 'test'
+                }
+            });
+
+        }
+        var to_intergral = function(){
+            api.openWin({
+                name: 'Shiyuan_integral',
+                url: '../html/Shiyuan_integral.html',
+                pageParam: {
+                    name: 'test'
+                }
+            });
+
+        }
+        var to_article = function(){
+            api.openWin({
+                name: 'Shiyuan_article',
+                url: '../html/Shiyuan_article.html',
+                pageParam: {
+                    name: 'test'
+                }
+            });
+
+        }
+        var to_care = function(){
+            api.openWin({
+                name: 'Shiyuan_care',
+                url: '../html/Shiyuan_care.html',
+                pageParam: {
+                    name: 'test'
+                }
+            });
+
+        }
+        // var to_browse = function(){
+        //     api.openWin({
+        //         name: 'Shiyuan_browse',
+        //         url: '../html/Shiyuan_browse.html',
+        //         pageParam: {
+        //             name: 'Shiyuan'
+        //         }
+        //     });
+
+        // }
+        var to_shopping = function(){
+            api.openWin({
+                name: 'Shiyuan_browse',
+                url: '../html/Shiyuan_shopping.html',
+                pageParam: {
+                    name: 'test'
+                }
+            });
+
+        }
+        var to_about = function(){
+            api.openWin({
+                name: 'Shiyuan_about',
+                url: '../html/Shiyuan_about.html',
+                pageParam: {
+                    name: 'test'
+                }
+            });
+
+        }
+
+        var clear = function(){
+            $api.clearStorage ();
+        }
+</script>
+</html>

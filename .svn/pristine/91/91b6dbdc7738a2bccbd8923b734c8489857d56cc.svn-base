@@ -1,0 +1,4 @@
+var APP_INFO = {
+	"app_key":"4ED601CF-94BA-9C80-2CB8-F4361A840A58",
+	"app_id":"A6077910409729"
+}

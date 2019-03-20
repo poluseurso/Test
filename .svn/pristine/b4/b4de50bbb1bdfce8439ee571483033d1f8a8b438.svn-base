@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <head>
+        <style>
+
+=======
+          *{
+            padding: 0rem;
+            margin: 0rem;
+            list-style: none;
+            text-decoration: none;
+          }
+
+          html{
+            font-size: 20px;
+          }
+
+          #header{
+            color: white;
+            background: #ff6633;
+            width: 100%;
+            height: 45px;
+          }
+
+          #header ul{
+            width: 100%;
+          }
+
+          #header ul li{
+            float: left;
+            text-align: center;
+            width: 20%;
+            line-height: 40px;
+            margin-left: 10%;
+          }
+
+          #foot {
+            width: 100%;
+            height:49px;
+            position: fixed;
+            bottom: 0px;
+            border-top: #f2f2f2 solid 1px;
+            color: #ccc;
+        }
+        .bottom1 {
+            float: left;
+            width: 25%;
+            height: 46px;
+            margin-top: 2px;
+            color: #ff6633;
+            /*background-color: #234;*/
+        }
+        .bottom2 {
+            float: left;
+            width: 25%;
+            height: 46px;
+            margin-top: 2px;
+            /*background-color: #234;*/
+        }
+        .bottom3 {
+            float: left;
+            width: 25%;
+            height: 46px;
+            margin-top: 2px;
+            /*background-color: #234;*/
+        }
+        .bottom4 {
+            float: left;
+            width: 25%;
+            height: 46px;
+            margin-top: 2px;
+        }
+        .shise {
+            width: 25px;
+            height: 48px;
+            margin:0px auto;
+            font-size: 12px;
+        }
+        .shiyun {
+            width: 25px;
+            height: 48px;
+            margin:0px auto;
+            font-size: 12px;
+        }
+        .shiling {
+            width: 25px;
+            height: 48px;
+            margin:0px auto;
+            font-size: 12px;
+        }
+        .shiyuan {
+            width: 25px;
+            height: 48px;
+            margin:0px auto;
+            font-size: 12px;
+        }
+        .shise .pic img {
+            width: 25px;
+            height: 25px;
+
+        }
+        .shiyun .pic img {
+            width: 25px;
+            height: 25px;
+
+        }
+        .shiling .pic img {
+            width: 25px;
+            height: 25px;
+
+        }
+        .shiyuan .pic img {
+            width: 25px;
+            height: 25px;
+
+        }
+
+          .active{
+            border-bottom: 5px solid #fff;
+          }
+      </style>
+  </head>
+  <body>
+          <div id="header">
+              <ul>
+                <li class="head_tab active" onclick=" fnsetindex(0);">视频</li>
+                <li class="head_tab" onclick=" fnsetindex(1);">日志</li>
+                <li class="head_tab" onclick=" fnsetindex(2);">分享</li>
+              </ul>
+          </div>
+          <div id="foot">
+            <div class="bottom1">
+                <div class="shise" >
+                    <div class="pic"><img src="../icon/food.png"></div>
+                    <div class="fonts">食色</div>
+                </div>
+            </div>
+            <div class="bottom2" onclick="openFoodWin(1)">
+                <div class="shiyun">
+                    <div class="pic"><img src="../icon/uncooker.png"></div>
+                    <div class="fonts">食韵</div>
+                </div>
+            </div>
+            <div class="bottom3" onclick="openFoodWin(2)">
+                <div class="shiling">
+                    <div class="pic"><img src="../icon/unold.png"></div>
+                    <div class="fonts">食灵</div>
+                </div>
+            </div>
+            <div class="bottom4" onclick="openFoodWin(3)">
+                <div class="shiyuan">
+                    <div class="pic"><img src="../icon/unbool.png"></div>
+                    <div class="fonts">食源</div>
+                </div>
+            </div>
+        </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+  var menus;
+  apiready = function(){
+     var header = $api.byId('header');
+     var footer = $api.byId('foot');
+     var footerH = $api.offset(footer).h;
+     var headerH = $api.offset(header).h;
+     //$api.fixStatusBar(headerH);
+     menus = $api.domAll(header, '.head_tab');
+     var frames = [];
+     api.openFrameGroup ({
+         name: 'mainframegroup',
+         scrollEnabled: true,
+         rect: {
+              x: 0,
+              y: headerH,
+              w: 'auto',
+              h: api.winHeight-headerH-footerH-1
+         },
+         index: 0,
+         frames: [{
+             name: 'Shise_frame_vadio',
+             url: '../frame/Shise_frame_vadio.html'
+         },{
+             name: 'Shise_frame_txt',
+             url: '../frame/Shise_frame_txt.html'
+         },{
+             name: 'Shise_frame_sharer',
+             url: '../frame/Shise_frame_sharer.html'
+         }]
+     }, function(ret, err){
+         changetabcolor(ret.index);
+     });11
+
+
+  };
+
+  function changetabcolor(index_){
+     for(var i=0;i<menus.length;i++){
+         if (index_==i) {$api.addCls(menus[i], 'active');
+         }else{
+             $api.removeCls(menus[i], 'active');
+         }
+     }
+  }
+
+  function fnsetindex(index_){
+       api.setFrameGroupIndex({
+           name: 'mainframegroup',
+           index: index_,
+           scroll: true
+       });
+       changetabcolor(index_);
+   }
+
+   function settaber(_index){
+     api.setFrameGroupIndex({
+     name: 'taber',
+     index: _index
+       });
+   }
+
+   function openFoodWin(index){
+     if(index==0){
+       api.openWin({
+           name: 'Shise',
+           url: 'Shise.html',
+           animation:{
+             type:"none"
+           },
+           pageParam: {
+               name: 'test'
+           }
+       });
+     }else if(index==1){
+       api.openWin({
+           name: 'Shiyun',
+           url: 'Shiyun.html',
+           animation:{
+             type:"none"
+           },
+           pageParam: {
+               name: 'test'
+           }
+       });
+     }else if(index==2){
+       api.openWin({
+           name: 'Shiling',
+           url: 'Shiling.html',
+           animation:{
+             type:"none"
+           },
+           pageParam: {
+               name: 'test'
+           }
+       });
+     }else if(index==3){
+       api.openWin({
+           name: 'Shiyuan',
+           url: 'Shiyuan.html',
+           animation:{
+             type:"none"
+           },
+           pageParam: {
+               name: 'test'
+           }
+       });
+     }
+   }
+
+  </script>
+  </html>

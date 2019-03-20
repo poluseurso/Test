@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+            font-family: "微软雅黑"; 
+            background-color: #FFF; 
+        }
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .fengGeXian {
+        	width: 100%;
+        	height: 1px;
+        	background-color: #efefef;
+        }
+        .top_1 {
+        	background-color: #ff6633;
+        	height: 38px;
+        	width: 100%;
+        	padding-top: 7.5px;
+        }
+        .searchBox {
+        	width: 73%;
+        	height: 30px;
+        	margin-left: 15px;
+        	padding-left: 15px;
+        	background-color: #ffffff;
+        	border-radius: 15px;
+        	float: left;
+        }
+        .searchFontSize {
+        	font-size: 14;
+        	color:#ffffff;
+        	font-family: "微软雅黑";
+        	float: left;
+        	padding-top: 3px;
+        	padding-left: 15px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="top_1" id="header">
+    	<div class="searchBox"></div>
+    	<div class="searchFontSize">搜索</div>
+    </div>
+    
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        var header = $api.byId('header');
+        var headerH = $api.offset(header).h;
+        $api.fixStatusBar(headerH);
+        var main_height = api.winHeight-95;
+        api.openFrame({
+            name: 'souSuo-frame',
+            url: '../frame/souSuo-frame.html',
+            rect: {
+                x: 0,
+                y: headerH,
+                w: 'auto',
+                h: main_height
+            },
+            animation:{
+                type:'none',
+                duration:300               
+            },
+            pageParam: {
+                name: 'value'
+            },
+            bounces: false
+        });
+    };
+</script>
+</html>

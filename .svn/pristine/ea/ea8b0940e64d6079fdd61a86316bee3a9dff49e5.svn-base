@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="api.css"/>
+    <style>
+        body{
+        	 font-family: "微软雅黑";
+         /*background-color: #FFF;*/
+        	opacity:1;
+			filter:alpha(opacity=0);
+        }
+        * {
+        	margin: 0px;
+        	padding: 0px;
+        }
+        .content {
+        	position: fixed;
+        	bottom: 0px;
+        	width: 100%;
+        	height: 100px;
+        	background: #CCC;
+        	border-top: 1px solid #f2f2f2;
+        	opacity:1;
+			filter:alpha(opacity=0);
+        }
+        .shuru {
+        	width: 80%;
+        	height: 30px;
+        	margin-left: 15px;
+        	margin-top: 10px;
+        	border-radius: 30px;
+        	border:0px;
+            outline: none; 
+            text-indent: 18px;
+            font-size: 16px;
+            /*background: #3a6;*/
+            display: inline;
+
+        }
+        .fabu {
+        	display: inline;
+        	padding-left:10px;
+        	color: #ff6633;
+        }
+        .miaoshu {
+        	font-size: 16px;
+        	margin-top: 10px;
+        	margin-left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+    	<input class="shuru" id="shuru" type="text" name="shuru"  placeholder="欢迎撰写优质评论";> 
+    	<div class="fabu" onclick="getWenZi(page_id)" >发布</div>
+    	<div class="miaoshu">食域出品·欢迎参与</div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/APICloud-rest-SHA1.js"></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript" src="../script/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../script/APP_INFO.js"></script>
+<script type="text/javascript">
+	var page_id;
+
+    apiready = function(){
+			page_id=api.pageParam.id;
+
+    };
+    function getWenZi(page_id) {
+    	var wen=document.getElementById("shuru");
+    	var wenzi=wen.value;
+    	var client = new Resource(APP_INFO.app_id, APP_INFO.app_key);
+		var Model = client.Factory("comment");
+			Model.save({
+			    "articleId": page_id,
+			    "userId": "5b0a3b30a43f78ab1d3984a7",
+			    "content": wenzi
+			}, function(ret,err){
+			    if(err){
+			        //处理错误 err
+			        alert("查询失败"+JSON.stringify(err)); 
+			    }else{
+			        //处理数据 ret
+			       alert("查询成功"+JSON.stringify(ret)); 
+
+			    }
+			})
+		colsepage();
+    }
+    function colsepage(){
+		api.closeFrame({
+		    name: 'xiangqing-pinglun-frame'
+		});
+    }
+</script>
+</html>
